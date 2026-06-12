@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+<h1>Semita Fahrpraxis Manager</h1>
+
+<p>
+Willkommen im Mitarbeiterportal.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Aktuelle Planungen</h2>
+
+{% if planungen %}
+
+<ul>
+
+{% for planung in planungen %}
+
+<li>
+
+<a
+href="{{ planung.url }}"
+target="_blank"
+>
+📄 {{ planung.name }}
+</a>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>
+Keine Planungen vorhanden.
+</p>
+
+{% endif %}
+
+</div>
+
+<div class="card">
+
+<h2>Schnellzugriffe</h2>
+
+<p>
+<a href="/mein-cockpit/" class="button">
+Mein Cockpit
+</a>
+</p>
+
+<p>
+<a href="/fahrten/" class="button">
+Meine Fahrten
+</a>
+</p>
+
+<p>
+<a
+href="https://vorgaben.sbb.ch/"
+target="_blank"
+class="button"
+>
+SBB Vorgaben
+</a>
+</p>
+
+</div>
+
+{% endblock %}

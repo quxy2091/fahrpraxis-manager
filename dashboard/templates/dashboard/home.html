@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+h1{
+    margin-top:0;
+    color:#244C82;
+}
+
+.progress{
+    width:100%;
+    background:#dfe5e3;
+    height:32px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    background:#244C82;
+    height:32px;
+    color:white;
+    text-align:center;
+    line-height:32px;
+    font-weight:bold;
+}
+
+.year-link{
+    display:inline-block;
+    padding:10px 16px;
+    margin-right:10px;
+    margin-bottom:10px;
+    border-radius:10px;
+    text-decoration:none;
+    background:#e9ecef;
+    color:black;
+    font-weight:bold;
+}
+
+.year-current{
+    background:#244C82;
+    color:white;
+}
+
+.logo-title{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.logo-title img{
+    height:80px;
+}
+
+.status-icon{
+    height:24px;
+    vertical-align:middle;
+}
+
+@media(max-width:768px){
+
+    .logo-title{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    table{
+        font-size:14px;
+    }
+
+}
+
+</style>
+
+<div class="card">
+
+<div class="logo-title">
+
+<img
+src="{% static 'images/semita.png' %}"
+alt="Semita"
+>
+
+<div>
+
+<h1>Fahrpraxis Manager</h1>
+
+{% if employee %}
+
+<h2>
+{{ employee.first_name }}
+{{ employee.last_name }}
+</h2>
+
+<p>
+Kategorie: {{ employee.category }}
+</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Jahresnavigation</h2>
+
+<a href="/mein-cockpit/jahr/{{ base_year }}/"
+class="year-link {% if current_year == base_year %}year-current{% endif %}">
+{{ base_year }}
+</a>
+
+<a href="/mein-cockpit/jahr/{{ base_year|add:'-1' }}/"
+class="year-link {% if current_year == base_year|add:'-1' %}year-current{% endif %}">
+{{ base_year|add:"-1" }}
+</a>
+
+<a href="/mein-cockpit/jahr/{{ base_year|add:'-2' }}/"
+class="year-link {% if current_year == base_year|add:'-2' %}year-current{% endif %}">
+{{ base_year|add:"-2" }}
+</a>
+
+<a href="/mein-cockpit/jahr/{{ base_year|add:'-3' }}/"
+class="year-link {% if current_year == base_year|add:'-3' %}year-current{% endif %}">
+{{ base_year|add:"-3" }}
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>Fahrpraxis {{ current_year }}</h2>
+
+<p>Sollstunden: {{ target_hours }}</p>
+
+<p>Iststunden: {{ total_hours }}</p>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+style="width:{{ percent }}%;"
+>
+{{ percent }} %
+</div>
+
+</div>
+
+<br>
+
+<a
+href="/fahrten/neu/"
+class="button"
+>
+Neue Fahrt erfassen
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>Fahrten {{ current_year }}</h2>
+
+<table>
+
+<tr>
+<th>Datum</th>
+<th>Zug</th>
+<th>Fahrzeug</th>
+<th>Stunden</th>
+</tr>
+
+{% for trip in recent_trips %}
+
+<tr>
+<td>{{ trip.date }}</td>
+<td>{{ trip.train_number }}</td>
+<td>{{ trip.vehicle }}</td>
+<td>{{ trip.hours }}</td>
+</tr>
+
+{% empty %}
+
+<tr>
+<td colspan="4">
+Keine Fahrten vorhanden
+</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% if employee and employee.role == "admin" %}
+
+<div class="card">
+
+<h2>Fahrzeug-Auffrischungen</h2>
+
+<table>
+
+<tr>
+<th>Fahrzeug</th>
+<th>Letzte Fahrt</th>
+<th>Tage</th>
+<th>Status</th>
+</tr>
+
+{% for item in vehicle_refresh %}
+
+<tr>
+
+<td>{{ item.vehicle }}</td>
+
+<td>{{ item.last_trip }}</td>
+
+<td>{{ item.days_since }}</td>
+
+<td>
+
+<img
+src="{% static item.status_icon %}"
+class="status-icon"
+alt="{{ item.status }}"
+title="{{ item.status }}"
+>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

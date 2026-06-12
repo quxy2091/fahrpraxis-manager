@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+.page-title{
+    color:#244C82;
+    margin-top:0;
+}
+
+.employee-link{
+    color:#244C82;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.employee-link:hover{
+    text-decoration:underline;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    background:#e8eef8;
+    color:#244C82;
+    font-size:14px;
+    font-weight:bold;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#f4f6f9;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+@media(max-width:768px){
+
+    table{
+        font-size:14px;
+    }
+
+}
+
+</style>
+
+<div class="card">
+
+<h1 class="page-title">
+👥 Mitarbeiter
+</h1>
+
+<table>
+
+<tr>
+    <th>Name</th>
+    <th>Kategorie</th>
+    <th>Rolle</th>
+</tr>
+
+{% for employee in employees %}
+
+<tr>
+
+    <td>
+        <a
+            href="/mitarbeiter/{{ employee.id }}/"
+            class="employee-link"
+        >
+            {{ employee.first_name }}
+            {{ employee.last_name }}
+        </a>
+    </td>
+
+    <td>
+        <span class="badge">
+            {{ employee.category }}
+        </span>
+    </td>
+
+    <td>
+        {{ employee.role }}
+    </td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+    <td colspan="3">
+        Keine Mitarbeiter vorhanden
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

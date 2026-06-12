@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+<h1>🗑️ Fahrt löschen</h1>
+
+<p>
+
+Möchtest du diese Fahrt wirklich endgültig löschen?
+
+</p>
+
+<table>
+
+<tr>
+    <td><strong>Datum</strong></td>
+    <td>{{ trip.date }}</td>
+</tr>
+
+<tr>
+    <td><strong>Zugnummer</strong></td>
+    <td>{{ trip.train_number }}</td>
+</tr>
+
+<tr>
+    <td><strong>Leistung</strong></td>
+    <td>{{ trip.service_type }}</td>
+</tr>
+
+<tr>
+    <td><strong>Fahrzeug</strong></td>
+    <td>{{ trip.vehicle }}</td>
+</tr>
+
+<tr>
+    <td><strong>Stunden</strong></td>
+    <td>{{ trip.hours }}</td>
+</tr>
+
+</table>
+
+<br>
+
+<form method="post">
+
+{% csrf_token %}
+
+<button
+    type="submit"
+    style="
+        background:#dc3545;
+        color:white;
+        border:none;
+        padding:12px 20px;
+        border-radius:8px;
+        cursor:pointer;
+        font-weight:bold;
+    "
+>
+    Ja, endgültig löschen
+</button>
+
+</form>
+
+<br>
+
+<a href="/fahrten/">
+← Abbrechen
+</a>
+
+</div>
+
+{% endblock %}

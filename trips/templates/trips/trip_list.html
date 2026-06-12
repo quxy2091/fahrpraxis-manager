@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+.page-title{
+    color:#244C82;
+    margin-top:0;
+}
+
+.button{
+    display:inline-block;
+    background:#244C82;
+    color:white;
+    padding:12px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.edit-button{
+    display:inline-block;
+    background:#244C82;
+    color:white;
+    padding:6px 12px;
+    border-radius:6px;
+    text-decoration:none;
+}
+
+.delete-button{
+    display:inline-block;
+    background:#dc3545;
+    color:white;
+    padding:6px 12px;
+    border-radius:6px;
+    text-decoration:none;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#f4f7fb;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+@media(max-width:768px){
+
+    table{
+        font-size:14px;
+    }
+
+    .button{
+        display:block;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+<div class="card">
+
+<h1 class="page-title">
+🚆 Meine Fahrten
+</h1>
+
+<a href="/fahrten/neu/" class="button">
+➕ Neue Fahrt
+</a>
+
+<table>
+
+<tr>
+    <th>Datum</th>
+    <th>Zug</th>
+    <th>Leistung</th>
+    <th>Fahrzeug</th>
+    <th>Stunden</th>
+    <th>Bearbeiten</th>
+    <th>Löschen</th>
+</tr>
+
+{% for trip in trips %}
+
+<tr>
+
+    <td>{{ trip.date }}</td>
+    <td>{{ trip.train_number }}</td>
+    <td>{{ trip.service_type }}</td>
+    <td>{{ trip.vehicle }}</td>
+    <td>{{ trip.hours }}</td>
+
+    <td>
+        <a
+            href="/fahrten/{{ trip.id }}/bearbeiten/"
+            class="edit-button"
+        >
+            ✏️ Bearbeiten
+        </a>
+    </td>
+
+    <td>
+        <a
+            href="/fahrten/{{ trip.id }}/loeschen/"
+            class="delete-button"
+        >
+            🗑️ Löschen
+        </a>
+    </td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+    <td colspan="7">
+        Keine Fahrten vorhanden
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

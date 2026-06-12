@@ -1,0 +1,136 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Semita Fahrpraxis Manager</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+    background:#f2f4f7;
+}
+
+.navbar{
+    background:#0A2740;
+    padding:15px 30px;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    height:50px;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.navbar a:hover{
+    color:#d9e7ff;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:20px;
+    border-radius:16px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+
+.button{
+    display:inline-block;
+    background:#244C82;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.button:hover{
+    background:#1b3b67;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#eef2f7;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .logo{
+        height:40px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<img
+src="{% static 'images/semita.png' %}"
+class="logo"
+alt="Semita"
+>
+
+<a href="/">Dashboard</a>
+
+<a href="/fahrten/">Fahrten</a>
+
+<a href="/mitarbeiter/">Mitarbeiter</a>
+
+<a href="/fahrzeuge/">Fahrzeuge</a>
+
+<a href="/admin/">Admin</a>
+
+</div>
+
+<div class="container">
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+</body>
+</html>

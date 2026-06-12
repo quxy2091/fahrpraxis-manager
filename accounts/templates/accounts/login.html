@@ -1,0 +1,163 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Semita Fahrpraxis Manager</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    background:#f4f6f9;
+    font-family:Arial,sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+}
+
+.login-box{
+
+    width:420px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:16px;
+
+    box-shadow:0 4px 20px rgba(0,0,0,0.1);
+
+    text-align:center;
+}
+
+.logo{
+    width:220px;
+    margin-bottom:20px;
+}
+
+h1{
+    color:#244C82;
+    margin-bottom:30px;
+}
+
+input{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    box-sizing:border-box;
+}
+
+button{
+
+    width:100%;
+
+    padding:12px;
+
+    background:#244C82;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1b3b67;
+}
+
+.error{
+    color:red;
+    margin-bottom:15px;
+}
+
+.version{
+    color:#777;
+    font-size:12px;
+    margin-top:25px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<img
+src="{% static 'images/semita.png' %}"
+class="logo"
+alt="Semita"
+>
+
+<h1>Fahrpraxis Manager</h1>
+
+{% if form.errors %}
+
+<div class="error">
+Benutzername oder Passwort ungültig
+</div>
+
+{% endif %}
+
+<form method="post">
+
+{% csrf_token %}
+
+<input
+type="text"
+name="username"
+placeholder="Benutzername"
+required
+>
+
+<input
+type="password"
+name="password"
+placeholder="Passwort"
+required
+>
+
+<button type="submit">
+Anmelden
+</button>
+
+</form>
+
+<div class="version">
+Version 1.0.0<br>
+© Semita GmbH<br>
+Support:
+<a href="mailto:michel.schaub@semita-gmbh.ch?subject=Support Fahrpraxis Manager">
+michel.schaub@semita-gmbh.ch
+</a>
+
+</div>
+
+</body>
+</html>

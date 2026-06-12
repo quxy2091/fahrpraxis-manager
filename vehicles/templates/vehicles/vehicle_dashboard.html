@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+<h1>🚆 {{ vehicle.name }}</h1>
+
+{% if last_trip %}
+
+<p>
+
+<strong>Letzte Fahrt:</strong>
+{{ last_trip.date }}
+
+</p>
+
+<p>
+
+<strong>Letzter Mitarbeiter:</strong>
+{{ last_trip.employee }}
+
+</p>
+
+{% else %}
+
+<p>
+
+Für dieses Fahrzeug wurden noch keine Fahrten erfasst.
+
+</p>
+
+{% endif %}
+
+</div>
+
+<div class="card">
+
+<h2>Jahresübersicht</h2>
+
+<p>
+
+<strong>Anzahl Fahrten:</strong>
+{{ yearly_count }}
+
+</p>
+
+<p>
+
+<strong>Gesamtstunden:</strong>
+{{ yearly_hours }}
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Letzte Fahrten</h2>
+
+<table>
+
+<tr>
+    <th>Datum</th>
+    <th>Mitarbeiter</th>
+    <th>Zug</th>
+    <th>Leistung</th>
+    <th>Stunden</th>
+</tr>
+
+{% for trip in trips %}
+
+<tr>
+
+    <td>{{ trip.date }}</td>
+
+    <td>
+        {{ trip.employee }}
+    </td>
+
+    <td>
+        {{ trip.train_number }}
+    </td>
+
+    <td>
+        {{ trip.service_type }}
+    </td>
+
+    <td>
+        {{ trip.hours }}
+    </td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+    <td colspan="5">
+        Keine Fahrten vorhanden
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

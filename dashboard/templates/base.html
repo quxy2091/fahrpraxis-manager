@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Semita Fahrpraxis Manager</title>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:0;
+}
+
+.navbar{
+    background:#12395f;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    padding:12px 25px;
+    flex-wrap:wrap;
+}
+
+.navbar img{
+    height:48px;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.navbar a:hover{
+    opacity:0.8;
+}
+
+.user-info{
+    color:white;
+    margin-left:auto;
+    font-size:14px;
+}
+
+.logout-link{
+    color:#ffdddd !important;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.button{
+    display:inline-block;
+    background:#244C82;
+    color:white;
+    padding:12px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .navbar img{
+        height:40px;
+    }
+
+    .user-info{
+        margin-left:0;
+    }
+
+    table{
+        font-size:14px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<img
+src="{% static 'images/semita.png' %}"
+alt="Semita"
+>
+
+<a href="/">Startseite</a>
+
+<a href="/mein-cockpit/">Mein Cockpit</a>
+
+<a href="/fahrten/">Fahrten</a>
+
+{% if employee and employee.role == "admin" %}
+
+<a href="/mitarbeiter/">Mitarbeiter</a>
+
+<a href="/fahrzeuge/">Fahrzeuge</a>
+
+<a href="/admin/">Admin</a>
+
+{% endif %}
+
+<span class="user-info">
+
+{% if employee %}
+{{ employee.first_name }} {{ employee.last_name }}
+{% else %}
+{{ request.user }}
+{% endif %}
+
+</span>
+
+<a
+href="/accounts/logout/"
+class="logout-link"
+>
+Abmelden
+</a>
+
+</div>
+
+<div class="container">
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+</body>
+</html>

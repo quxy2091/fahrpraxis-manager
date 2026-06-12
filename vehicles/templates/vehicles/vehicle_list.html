@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+<h1>🚆 Fahrzeuge</h1>
+
+<table>
+
+<tr>
+    <th>Fahrzeug</th>
+    <th>Aktion</th>
+</tr>
+
+{% for vehicle in vehicles %}
+
+<tr>
+
+    <td>
+        {{ vehicle.name }}
+    </td>
+
+    <td>
+
+        <a
+            href="/fahrzeuge/{{ vehicle.id }}/"
+            class="button"
+        >
+            Öffnen
+        </a>
+
+    </td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+    <td colspan="2">
+        Keine Fahrzeuge vorhanden
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

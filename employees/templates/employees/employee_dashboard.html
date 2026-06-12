@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+.page-title{
+    color:#244C82;
+    margin-top:0;
+}
+
+.stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.stat-box{
+    background:#f8f9fb;
+    padding:20px;
+    border-radius:12px;
+    border-left:5px solid #244C82;
+}
+
+.stat-value{
+    font-size:32px;
+    font-weight:bold;
+    color:#244C82;
+}
+
+.progress{
+    width:100%;
+    height:32px;
+    background:#dbe4f2;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    background:#244C82;
+    height:32px;
+    color:white;
+    text-align:center;
+    line-height:32px;
+    font-weight:bold;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#f4f6f9;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    background:#e8eef8;
+    color:#244C82;
+    font-weight:bold;
+}
+
+@media(max-width:768px){
+
+    .stat-value{
+        font-size:24px;
+    }
+
+}
+
+</style>
+
+<div class="card">
+
+<h1 class="page-title">
+👤 Mitarbeiter-Cockpit
+</h1>
+
+<h2>
+{{ employee.first_name }}
+{{ employee.last_name }}
+</h2>
+
+<p>
+<span class="badge">
+{{ employee.category }}
+</span>
+</p>
+
+<p>
+<strong>Rolle:</strong>
+{{ employee.role }}
+</p>
+
+</div>
+
+<div class="stat-grid">
+
+<div class="card">
+
+<h3>Jahr</h3>
+
+<div class="stat-value">
+{{ current_year }}
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Iststunden</h3>
+
+<div class="stat-value">
+{{ total_hours }}
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Sollstunden</h3>
+
+<div class="stat-value">
+{{ target_hours }}
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Fahrpraxis-Fortschritt</h2>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+style="width:{{ percent }}%;"
+>
+{{ percent }} %
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Fahrten {{ current_year }}</h2>
+
+<table>
+
+<tr>
+    <th>Datum</th>
+    <th>Zug</th>
+    <th>Leistung</th>
+    <th>Fahrzeug</th>
+    <th>Stunden</th>
+</tr>
+
+{% for trip in trips %}
+
+<tr>
+    <td>{{ trip.date }}</td>
+    <td>{{ trip.train_number }}</td>
+    <td>{{ trip.service_type }}</td>
+    <td>{{ trip.vehicle }}</td>
+    <td>{{ trip.hours }}</td>
+</tr>
+
+{% empty %}
+
+<tr>
+    <td colspan="5">
+        Keine Fahrten vorhanden
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}
