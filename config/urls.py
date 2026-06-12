@@ -5,15 +5,15 @@ from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from accounts.views import SemitaLoginView
+from accounts.views import setup_admin
 
 
 urlpatterns = [
 
     path(
-        "login/",
-        SemitaLoginView.as_view(),
-        name="login"
+    "setup-admin/",
+    setup_admin,
+    name="setup_admin"
     ),
 
     path(
