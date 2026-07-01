@@ -2,17 +2,175 @@
 
 {% block content %}
 
+<style>
+
+.form-card{
+    max-width:1000px;
+    margin:auto;
+}
+
+.page-title{
+    margin-top:0;
+    color:#244C82;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ced4da;
+    border-radius:8px;
+    box-sizing:border-box;
+    font-size:16px;
+}
+
+textarea{
+    resize:vertical;
+    min-height:120px;
+}
+
+.save-button{
+
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+
+    background:#244C82;
+    color:white;
+
+    border:none;
+    border-radius:8px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.save-button:hover{
+
+    background:#18365c;
+
+}
+
+.cancel-button{
+
+    display:block;
+    text-align:center;
+    margin-top:15px;
+
+    color:#244C82;
+    text-decoration:none;
+    font-weight:bold;
+
+}
+
+.autocomplete{
+
+    position:relative;
+
+}
+
+.autocomplete-list{
+
+    display:none;
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    background:white;
+
+    border:1px solid #ced4da;
+
+    border-top:none;
+
+    max-height:250px;
+
+    overflow-y:auto;
+
+    z-index:999;
+
+}
+
+.autocomplete-item{
+
+    padding:10px 12px;
+
+    cursor:pointer;
+
+}
+
+.autocomplete-item:hover{
+
+    background:#edf3fb;
+
+}
+
+.errorlist{
+
+    color:#b00020;
+
+    margin:8px 0;
+
+}
+
+@media(max-width:900px){
+
+.row{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
 <div class="card form-card">
 
 <h1 class="page-title">
+
 {{ title }}
+
 </h1>
 
 {% if form.errors %}
 
-<div style="background:#ffe5e5;border:1px solid #cc0000;padding:15px;margin-bottom:20px;border-radius:8px;">
+<div
+style="
+background:#ffe5e5;
+border:1px solid #c62828;
+padding:15px;
+margin-bottom:20px;
+border-radius:8px;
+"
+>
 
-<b>Bitte folgende Fehler korrigieren:</b>
+<b>
+
+Bitte folgende Fehler korrigieren:
+
+</b>
 
 {{ form.errors }}
 
@@ -24,7 +182,104 @@
 
 {% csrf_token %}
 
-{{ form.as_p }}
+<div class="row">
+
+<div class="form-group">
+
+{{ form.date.label_tag }}
+
+{{ form.date }}
+
+</div>
+
+<div class="form-group">
+
+{{ form.traffic_type.label_tag }}
+
+{{ form.traffic_type }}
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="form-group">
+
+{{ form.shunting_type.label_tag }}
+
+{{ form.shunting_type }}
+
+</div>
+
+<div class="form-group">
+
+{{ form.train_number.label_tag }}
+
+{{ form.train_number }}
+
+</div>
+
+</div>
+<div class="row">
+
+<div class="form-group autocomplete">
+
+{{ form.from_station.label_tag }}
+
+{{ form.from_station }}
+
+<div
+id="from_station_results"
+class="autocomplete-list"
+>
+</div>
+
+</div>
+
+<div class="form-group autocomplete">
+
+{{ form.to_station.label_tag }}
+
+{{ form.to_station }}
+
+<div
+id="to_station_results"
+class="autocomplete-list"
+>
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="form-group">
+
+{{ form.vehicle.label_tag }}
+
+{{ form.vehicle }}
+
+</div>
+
+<div class="form-group">
+
+{{ form.hours.label_tag }}
+
+{{ form.hours }}
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+{{ form.notes.label_tag }}
+
+{{ form.notes }}
+
+</div>
 
 <button
 type="submit"
@@ -36,15 +291,28 @@ id="save-button"
 
 </button>
 
+<a
+href="/mein-cockpit/"
+class="cancel-button"
+>
+
+Zurück zum Cockpit
+
+</a>
+
 </form>
 
 </div>
 
 <script>
 
-const form=document.querySelector("form");
+const form =
+document.querySelector("form");
 
-const button=document.getElementById("save-button");
+const saveButton =
+document.getElementById(
+"save-button"
+);
 
 form.addEventListener(
 
@@ -52,13 +320,344 @@ form.addEventListener(
 
 function(){
 
-button.disabled=true;
+saveButton.disabled=true;
 
-button.innerHTML="Speichern...";
+saveButton.innerHTML=
+"Speichern...";
 
 }
 
 );
+
+const traffic =
+document.getElementById(
+"id_traffic_type"
+);
+
+const shunting =
+document.getElementById(
+"id_shunting_type"
+);
+
+const train =
+document.getElementById(
+"id_train_number"
+);
+
+const vehicle =
+document.getElementById(
+"id_vehicle"
+);
+
+const toStation =
+document.getElementById(
+"id_to_station"
+);
+
+function updateForm(){
+
+if(!traffic){
+
+return;
+
+}
+
+if(
+traffic.value==="zug"
+){
+
+if(train){
+
+train.parentElement.style.display="block";
+
+}
+
+if(toStation){
+
+toStation.parentElement.style.display="block";
+
+}
+
+if(vehicle){
+
+vehicle.parentElement.style.display="block";
+
+}
+
+}
+
+else{
+
+if(train){
+
+train.parentElement.style.display="block";
+
+}
+
+if(toStation){
+
+toStation.parentElement.style.display="block";
+
+}
+
+if(
+shunting &&
+shunting.value==="indirekt"
+){
+
+if(vehicle){
+
+vehicle.parentElement.style.display="none";
+
+}
+
+}
+
+else{
+
+if(vehicle){
+
+vehicle.parentElement.style.display="block";
+
+}
+
+}
+
+}
+
+}
+
+if(traffic){
+
+traffic.addEventListener(
+"change",
+updateForm
+);
+
+}
+
+if(shunting){
+
+shunting.addEventListener(
+"change",
+updateForm
+);
+
+}
+
+updateForm();
+const fromStation =
+document.getElementById(
+"id_from_station"
+);
+
+const toStationField =
+document.getElementById(
+"id_to_station"
+);
+
+const fromResults =
+document.getElementById(
+"from_station_results"
+);
+
+const toResults =
+document.getElementById(
+"to_station_results"
+);
+
+async function searchStations(
+
+field,
+resultBox
+
+){
+
+const value =
+field.value.trim();
+
+if(value.length<2){
+
+resultBox.style.display="none";
+
+resultBox.innerHTML="";
+
+return;
+
+}
+
+const response =
+await fetch(
+"/stations/search/?q="+
+encodeURIComponent(value)
+);
+
+const stations =
+await response.json();
+
+resultBox.innerHTML="";
+
+stations.forEach(function(station){
+
+const item =
+document.createElement("div");
+
+item.className=
+"autocomplete-item";
+
+item.innerHTML=
+station.name;
+
+item.addEventListener(
+
+"click",
+
+function(){
+
+field.value=
+station.name;
+
+resultBox.innerHTML="";
+
+resultBox.style.display="none";
+
+}
+
+);
+
+resultBox.appendChild(item);
+
+});
+
+if(stations.length>0){
+
+resultBox.style.display=
+"block";
+
+}else{
+
+resultBox.style.display=
+"none";
+
+}
+
+}
+
+if(fromStation){
+
+fromStation.addEventListener(
+
+"keyup",
+
+function(){
+
+searchStations(
+
+fromStation,
+fromResults
+
+);
+
+}
+
+);
+
+}
+
+if(toStationField){
+
+toStationField.addEventListener(
+
+"keyup",
+
+function(){
+
+searchStations(
+
+toStationField,
+toResults
+
+);
+
+}
+
+);
+
+}
+
+document.addEventListener(
+
+"click",
+
+function(event){
+
+if(
+!event.target.closest(
+".autocomplete"
+)
+){
+
+fromResults.style.display=
+"none";
+
+toResults.style.display=
+"none";
+
+}
+
+}
+
+);
+if(train){
+
+train.addEventListener(
+
+"input",
+
+function(){
+
+let value =
+this.value.toUpperCase();
+
+let result = "";
+
+for(
+let i=0;
+i<value.length;
+i++
+){
+
+const c =
+value[i];
+
+if(
+i<5 &&
+/[0-9]/.test(c)
+){
+
+result += c;
+
+}
+
+else if(
+i===5 &&
+/[A-Z]/.test(c)
+){
+
+result += c;
+
+}
+
+}
+
+this.value =
+result;
+
+}
+
+);
+
+}
 
 </script>
 
