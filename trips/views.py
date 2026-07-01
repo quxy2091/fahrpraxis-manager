@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from employees.models import Employee
@@ -57,6 +58,11 @@ def create_trip(request):
 
             trip.save()
 
+            messages.success(
+                request,
+                "Fahrt erfolgreich gespeichert."
+            )
+
             return redirect(
                 "/mein-cockpit/"
             )
@@ -106,9 +112,14 @@ def edit_trip(
 
             form.save()
 
+            messages.success(
+                request,
+                "Fahrt erfolgreich geändert."
+            )
+
             return redirect(
-    		"/mein-cockpit/"
-	) 
+                "/mein-cockpit/"
+            )
 
     else:
 
@@ -150,6 +161,11 @@ def delete_trip(
     if request.method == "POST":
 
         trip.delete()
+
+        messages.success(
+            request,
+            "Fahrt erfolgreich gelöscht."
+        )
 
         return redirect(
             "/mein-cockpit/"

@@ -48,6 +48,11 @@ urlpatterns = [
     ),
 
     path(
+        "stations/",
+        include("stations.urls")
+    ),
+
+    path(
         "accounts/",
         include("accounts.urls")
     ),

@@ -3,6 +3,7 @@ from datetime import date
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
+
 from employees.models import Employee
 from trips.models import Trip
 from vehicles.models import Vehicle

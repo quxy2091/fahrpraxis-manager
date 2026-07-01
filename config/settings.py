@@ -26,6 +26,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'dal',
+    'dal_select2',
+
     'accounts',
     'employees',
     'vehicles',
