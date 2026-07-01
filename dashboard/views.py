@@ -1,38 +1,21 @@
 from datetime import date
-from pathlib import Path
 
-from django.conf import settings
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from employees.models import Employee
 from trips.models import Trip
 from vehicles.models import Vehicle
+from docs.models import Document
 
 
 @login_required
 def startseite(request):
 
-    planungen = []
-
-    planungs_ordner = (
-        Path(settings.BASE_DIR)
-        / "documents"
-        / "planungen"
-    )
-
-    if planungs_ordner.exists():
-
-        for datei in sorted(
-            planungs_ordner.glob("*.pdf"),
-            key=lambda x: x.stat().st_mtime,
-            reverse=True
-        ):
-
-            planungen.append({
-                "name": datei.name,
-                "url": f"/planungen/{datei.name}"
-            })
+    planungen = Document.objects.filter(
+        category="planung",
+        active=True
+    ).order_by("-uploaded_at")
 
     return render(
         request,
@@ -77,16 +60,19 @@ def home(request, year=None):
         percent = 0
 
         if target_hours > 0:
+
             percent = round(
                 (total_hours / target_hours) * 100,
                 1
             )
 
         employee_stats.append({
+
             "employee": emp,
             "total_hours": total_hours,
             "target_hours": target_hours,
             "percent": percent,
+
         })
 
     vehicle_refresh = []
@@ -123,11 +109,13 @@ def home(request, year=None):
                 status_icon = "images/signal_ok.PNG"
 
             vehicle_refresh.append({
+
                 "vehicle": vehicle,
                 "last_trip": last_trip.date,
                 "days_since": days_since,
                 "status": status,
                 "status_icon": status_icon,
+
             })
 
     if employee:
@@ -137,7 +125,7 @@ def home(request, year=None):
             date__year=current_year
         ).order_by("-date")
 
-        recent_trips = trips[:10]
+        recent_trips = trips
 
         total_hours = sum(
             trip.hours for trip in trips
@@ -148,34 +136,76 @@ def home(request, year=None):
         percent = 0
 
         if target_hours > 0:
+
             percent = round(
                 (total_hours / target_hours) * 100,
                 1
             )
 
-        remaining = target_hours - total_hours
+        remaining = max(
+            target_hours - total_hours,
+            0
+        )
+
+        trip_count = trips.count()
+
+        vehicle_count = (
+            trips.exclude(
+                vehicle=None
+            )
+            .values("vehicle")
+            .distinct()
+            .count()
+        )
 
     else:
 
         recent_trips = []
+
         total_hours = 0
+
         target_hours = 0
+
         percent = 0
+
         remaining = 0
 
+        trip_count = 0
+
+        vehicle_count = 0
+
     return render(
+
         request,
+
         "dashboard/home.html",
+
         {
+
             "employee": employee,
+
             "base_year": base_year,
+
             "current_year": current_year,
+
             "total_hours": total_hours,
+
             "target_hours": target_hours,
+
             "percent": percent,
+
             "remaining": remaining,
+
             "recent_trips": recent_trips,
+
             "employee_stats": employee_stats,
+
             "vehicle_refresh": vehicle_refresh,
+
+            "trip_count": trip_count,
+
+            "vehicle_count": vehicle_count,
+
         }
+
     )

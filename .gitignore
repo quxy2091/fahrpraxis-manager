@@ -8,3 +8,12 @@ db_backup*.sqlite3
 *.log
 
 documents/
+media/
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+
+*.zip

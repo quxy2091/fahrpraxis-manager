@@ -8,28 +8,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Semita Fahrpraxis Manager</title>
+<title>Semita Mindestfahrpraxis</title>
 
 <style>
 
 body{
-    font-family:Arial,sans-serif;
-    background:#f4f6f9;
     margin:0;
     padding:0;
+    font-family:Arial,sans-serif;
+    background:#f2f4f7;
 }
 
 .navbar{
-    background:#12395f;
+    background:#0A2740;
+    padding:15px 30px;
     display:flex;
     align-items:center;
     gap:25px;
-    padding:12px 25px;
     flex-wrap:wrap;
 }
 
-.navbar img{
-    height:48px;
+.logo{
+    height:50px;
 }
 
 .navbar a{
@@ -39,17 +39,7 @@ body{
 }
 
 .navbar a:hover{
-    opacity:0.8;
-}
-
-.user-info{
-    color:white;
-    margin-left:auto;
-    font-size:14px;
-}
-
-.logout-link{
-    color:#ffdddd !important;
+    color:#d9e7ff;
 }
 
 .container{
@@ -60,10 +50,10 @@ body{
 
 .card{
     background:white;
-    padding:20px;
+    padding:25px;
     margin-bottom:20px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    border-radius:16px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.08);
 }
 
 .button{
@@ -71,14 +61,22 @@ body{
     background:#244C82;
     color:white;
     padding:12px 20px;
-    border-radius:8px;
+    border-radius:10px;
     text-decoration:none;
     font-weight:bold;
+}
+
+.button:hover{
+    background:#1b3b67;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
+}
+
+th{
+    background:#eef2f7;
 }
 
 th,
@@ -95,16 +93,8 @@ td{
         align-items:flex-start;
     }
 
-    .navbar img{
+    .logo{
         height:40px;
-    }
-
-    .user-info{
-        margin-left:0;
-    }
-
-    table{
-        font-size:14px;
     }
 
 }
@@ -119,41 +109,19 @@ td{
 
 <img
 src="{% static 'images/semita.png' %}"
+class="logo"
 alt="Semita"
 >
 
 <a href="/">Startseite</a>
 
-<a href="/mein-cockpit/">Mein Cockpit</a>
-
-<a href="/fahrten/">Fahrten</a>
-
-{% if employee and employee.role == "admin" %}
+<a href="/mein-cockpit/">Mindestfahrpraxis</a>
 
 <a href="/mitarbeiter/">Mitarbeiter</a>
 
 <a href="/fahrzeuge/">Fahrzeuge</a>
 
 <a href="/admin/">Admin</a>
-
-{% endif %}
-
-<span class="user-info">
-
-{% if employee %}
-{{ employee.first_name }} {{ employee.last_name }}
-{% else %}
-{{ request.user }}
-{% endif %}
-
-</span>
-
-<a
-href="/accounts/logout/"
-class="logout-link"
->
-Abmelden
-</a>
 
 </div>
 

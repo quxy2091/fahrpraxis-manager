@@ -1,0 +1,886 @@
+(Adelrain)
+(Camorino)
+(Ferden)
+(Orbe)
+(Pollegio)
+(Rynächt)
+(Tellenfeld)
+(Wanzwil)
+A,P
+Aadorf
+Aarau
+Aarau GB
+Aarberg
+Aarburg-O.
+Aathal
+Adliswil
+Aefligen
+Aesch BL
+Affoltern am Albis
+Aigle
+Airolo
+Allaman
+Alpnach Dorf
+Alpnachstad
+Altdorf UR
+Altenrhein
+Altishausen
+Altmatt
+Altnau
+Altstätten SG
+Ambrì-Piotta
+Amriswil
+Amsteg-Silenen
+Andelfingen
+Annemasse
+Arbon
+Ardon
+Arnegg
+Arth-Goldau
+Au SG
+Au ZH
+Ausserberg
+Auvernier
+Avenches
+BI Prod. Anlage Ost
+Baar
+Baar Lindenpark
+Bad Ragaz
+Bad Zurzach
+Baden
+Baden Oberstadt
+Baldegg
+Balerna
+Basel Bad Bf
+Basel Bad Rbf
+Basel GB
+Basel KH
+Basel RB
+Basel SBB
+Basel St. Jakob
+Basel St. Johann
+Bassecourt
+Bassersdorf
+Bauma
+Bazenheid
+Beinwil a. S.
+Belfaux-Village
+Bellach
+Bellach Industrie
+Bellinzona
+Bellinzona S. Paolo
+Belp
+Benzenschwil
+Berg
+Berghof
+Berlingen
+Bern
+Bern Bümpliz Nord
+Bern Bümpliz Süd
+Bern Fischermätteli
+Bern Holligen
+Bern Riedbach
+Bern W'Haus
+Bern W'haus
+Bern Weissenbühl
+Bern Wyler
+Bettwiesen
+Bevaix
+Bex
+Biasca
+Biberbrugg
+Biberist Ost
+Biel/Bienne
+Biglen
+Bilten
+Birmensdorf ZH
+Birrwil
+Birsfelden Hafen
+Bischofszell Nord
+Bischofszell Stadt
+Blausee-Mitholz
+Bodio TI
+Bollingen
+Boltigen
+Boncourt
+Bonstetten-W.
+Borrweg
+Bossonnens
+Boudry
+Bouveret
+Bowil
+Brenzikofen
+Brienz
+Brienzwiler
+Brig
+Brittnau-Wikon
+Broc-Chocolaterie
+Broc-Village
+Bronschhofen AMP
+Brugg AG
+Brugg Nord
+Brugg Süd
+Brunegg
+Brunnadern-N.
+Brunnen
+Brunnenfluh
+Brunni
+Brügg BE
+Brünig-Hasliberg
+Brünnen Westside
+Bubikon
+Buchmatt
+Buchs SG
+Buchs-Dällikon
+Bulle
+Burgdorf
+Burghalden
+Burgistein
+Bussigny
+Bussnang
+Busswil BE
+Buttes
+Bärschwil
+Bülach
+Büren a. Aare
+Bürglen TG
+Bütschwil
+CASI
+Cadenazzo
+Capolago-Riva S. V.
+Castione Nord
+Castione-Arbedo
+Cham
+Chambrelien
+Chambésy
+Champ-du-Moulin
+Chapelle (diag)
+Chavannes
+Chavornay
+Cheyres
+Chiasso
+Chiasso SM
+Choindez
+Chur
+Chur West
+Châteauneuf-C.
+Châtel-St-Denis
+Châtelaine
+Châtillens
+Chäppeli
+Chénens
+Claro
+Colombier NE
+Coppet
+Corcelles-Nord
+Corcelles-Peseux
+Cornaux NE
+Cortébert
+Cossonay-Penthal.
+Courfaivre
+Courgenay
+Court
+Courtelary
+Courtemaîche
+Courtepin
+Courtételle
+Couvet
+Cressier FR
+Creux-de-Genthod
+Croy-Romainmôtier
+Crémines
+Cugy FR
+Cully
+D,A
+Dachsen
+Dagmersellen
+Daillens
+Dallenwil
+Degersheim
+Degersheim West
+Delle
+Delémont
+Denges-Echandens
+Dielsdorf
+Dietikon
+Dietlikon
+Domat/Ems
+Domdidier
+Domo II
+Domodossola
+Domodossola FM
+Dompierre FR
+Doppleschwand-R.
+Dorfnest
+Dottikon-Dintikon
+Dulliken
+Däniken SO
+Därligen
+Därstetten
+Döttingen
+Dübendorf
+Düdingen
+Ebikon
+Ebnat-Kappel
+Eclépens
+Ecublens-Rue
+Effingen
+Effretikon
+Egerkingen
+Eglisau
+Egnach
+Eidg. Magazine
+Eifeld
+Einigen
+Einsiedeln
+Elgg
+Embrach-Rorbas
+Emmenbrücke
+Emmenmatt
+En Grillon
+Engelberg
+Entlebuch
+Ependes VD
+Erlen
+Erlenbach ZH
+Erlenbach im S.
+Ermatingen
+Erstfeld
+Eschenbach LU
+Eschenz
+Eschlikon TG
+Escholzmatt
+Estavayer-le-Lac
+Etzwilen
+Evionnaz
+Faido
+Fangboden
+Faoug
+Fehraltorf
+Felben-Wellhausen
+Feldbach
+Feldmeilen WA
+Felsberg
+Felsenburg
+Feuerthalen
+Fischenthal
+Flamatt
+Flawil
+Fleurier
+Flums
+Flüelen
+Fontenette
+Founex
+Frauenfeld
+Freienbach SOB
+Frenkendorf-F.
+Fribourg/Freiburg
+Frick
+Frutigen
+GE Voie-Creuse
+GRAF Ausweiche
+Galmiz
+Gampel-Steg
+Gamsen
+Gasel
+Gelterkinden
+Genève
+Genève-Aéroport
+Genève-Eaux-Vives
+Genève-La-Praille
+Genève-Stade
+Genève-Sécheron
+Gerlafingen
+Gersag
+Get. Güter
+Gettnau
+Gilly-Bursinel
+Gisikon-Root
+Giswil
+Giubiasco
+Giustizia
+Givisiez
+Givisiez Dépôt
+Gland
+Glarus
+Glattbrugg
+Glovelier
+Goldach
+Goppenstein
+Gorgier-St-Aubin
+Gossau SG
+Grandson
+Grandvaux
+Granges-Marnand
+Grellingen
+Grenchen Nord
+Grenchen Süd
+Grolley
+Grosshöchstetten
+Gruonbach
+Gruyères
+Grünenmatt
+Gurtnellen
+Gwatt
+Gänsbrunnen
+Göschenen
+Gübsensee
+Gümligen
+Gümmenen
+Gütsch
+Güttingen
+Haag-Gams
+Hard
+Hasle-Rüegsau
+Hauptwil
+Hedingen
+Heerbrugg
+Heimberg
+Hendschiken
+Henggart
+Hergiswil NW
+Herisau
+Herrliberg-F.
+Herzogenbuchsee
+Heustrich-E.
+Hindelbank
+Hinwil
+Hitzkirch
+Hochdorf
+Hohtenn
+Horchental
+Horgen
+Horgen Oberdorf
+Horn
+Hornussen
+Horw
+Hunzenschwil
+Huttwil
+Hägendorf
+Häggenschwil-W.
+Härkingen
+Höcklerbrücke
+Hüntwangen-Wil
+Hürlistein
+Hüswil
+INN Grimseltor
+Illnau
+Immensee
+Innertkirchen
+Ins
+Interlaken Ost
+Interlaken West
+Iselle
+Islikon
+Jestetten
+Jona
+Jonction
+Kaiseraugst
+Kaiserstuhl AG
+Kaiserstuhl OW
+Kallnach
+Kaltbrunn
+Kaltenboden
+Kandergrund
+Kandersteg
+Kaufdorf
+Kehlhof
+Kehrsatz
+Kempten
+Kemptthal
+Kerns-Kägiswil
+Kerzers
+Kilchberg ZH
+Killwangen-S.
+Kirchberg-A.
+Kloten
+Knonau
+Koblenz
+Kollermühle
+Konolfingen
+Konstanz
+Kradolf
+Krattighalde
+Kreuzl. Bernrain
+Kreuzlingen
+Kreuzlingen Hafen
+Kölliken
+Köniz
+Küsnacht ZH
+Küssnacht am Rigi
+LS Paleyres
+LS-Sébeillon
+LZ Verkehrshaus
+La Chx-de-Fonds
+La Conversion
+La Plaine
+La Presta Mines
+La Sarraz
+La Verrerie
+Lachen SZ
+Lalden
+Lancy-Pont-Rouge
+Landquart
+Langendorf
+Langenthal
+Langenthal GB
+Langenthal Süd
+Langnau i.E.
+Langnau-Gattikon
+Lanzenhäusern
+Laufen
+Laufenburg
+Laupen BE
+Lausanne
+Lausanne-Triage
+Lausen
+Lavorgo
+Le Brassus
+Le Crêt-du-Locle
+Le Day
+Le Landeron
+Le Lieu
+Le Locle
+Le Locle-Col-d.-R.
+Le Pont
+Le Sentier-L'Orient
+Leissigbad
+Leissigen
+Lengnau BE
+Lengwil
+Lenzburg
+Les Geneveys-s.-C.
+Les Granges
+Les H.-Geneveys
+Les Verrières
+Leuk
+Lichtensteig
+Liesberg
+Liestal
+Lindenholz
+Linthal
+Litti
+Locarno
+Lommiswil
+Lotzwil
+Lucens
+Luchsingen-H.
+Lugano
+Lugano V.
+Luino (I)
+Lungern
+Lupfig
+Lussy FR
+Luterbach-A.
+Luzern
+Luzern Littau
+Lyss
+Läufelfingen
+Löchligut
+Lütisburg
+Lützelflüh-G.
+Maccagno
+Madiswil
+Madretsch
+Magadino-Vira
+Mahlenwald
+Malleray-Bévilard
+Malters
+Mammern
+Marin-Epagnier
+Maroggia-Melano
+Marthalen
+Martigny
+Massongex
+Mattstetten Abzw.
+Meggen
+Meilen
+Meiringen
+Melide
+Mellingen
+Mels
+Mendrisio
+Menznau
+Menznau West
+Mettmenstetten
+Meyrin
+Meyrin Cargo
+Mezzovico-Sigirino
+Mies
+Minusio
+Mitlödi
+Mittelhäusern
+Mogelsberg
+Montbovon
+Monthey
+Morges
+Moudon
+Moutier
+Mumpf
+Muntelier Abzw.
+Muolen
+Murgenthal
+Muri AG
+Murten/Morat
+Muttenz
+Mägenwil
+Märstetten
+Märwil
+Môtiers NE
+Möhlin
+Mühlehorn
+Müllheim-W.
+Münchenbuchsee
+Münchenstein
+Münchenwiler-C.
+Münsingen
+Münsterlingen-Sch.
+Müntschemier
+NE-Serrières
+NE-Vauseyon
+NW Dorf
+Ne-Vauseyon
+Nebikon
+Nesslau-N. St. J
+Netstal
+Neuberg
+Neuchâtel
+Neuenegg
+Neuhausen
+Neukirch-Egnach
+Nieder-/Oberurnen
+Niederbipp
+Niederbottigen
+Niederglatt ZH
+Niederried
+Niederscherli
+Niederweningen
+Noiraigue
+Nyon
+Näfels-Mollis
+OF Golfpark
+Oberaach
+Oberbuchsiten
+Oberburg
+Oberdiessbach
+Oberdorf SO
+Oberentfelden
+Oberglatt ZH
+Obermatt
+Oberried
+Oberriet SG
+Oberrüti
+Oberwil im S.
+Oberwinterthur
+Oensingen
+Oey-Diemtigen
+Olten
+Olten Hammer
+Olten RB
+Onnens-Bonvillars
+Opfikon Süd
+Orbe
+Osogna-Cresciano
+Ossingen
+Ostermundigen
+Otelfingen
+Othmarsingen
+Palézieux
+Paradiso
+Payerne
+Pensier
+Perroy
+Pfungen
+Pfäffikon SZ
+Pfäffikon ZH
+Pino-Tronzano
+Pollegio Nord
+Pontarlier
+Porrentruy
+Poudeille
+Pramont
+Pratteln
+Preglia
+Puidoux
+Quartino
+RB Limmattal
+Rafz
+Ramsei
+Ranconnex
+Ranzo-S. Abbondio
+Rapperswil SG
+Raron
+Rebstein-Marbach
+Reconvilier
+Regensdorf-Watt
+Reichenbach i.K.
+Reichenbach i/K
+Reichenburg
+Rekingen AG
+Renan BE
+Renens VD
+Reuchenette-Péry
+Rheineck
+Rheinfelden
+Richterswil
+Rickenbach-Attikon
+Riddes
+Riedtwil
+Rikon
+Ringgenberg
+Ringlikon
+Rivera-Bironico
+Roche VD
+Rodi-Fiesso
+Roggwil-Berg
+Roggwil-Wynau
+Rohrbach
+Rolle
+Romanshorn
+Romont FR
+Rorschach
+Rorschach Hafen
+Rosshäusern
+Rosé
+Rothenburg Station
+Rothenthurm
+Rothrist
+Rotkreuz
+Rubigen
+Ruchfeld
+Rupperswil
+Rümlang
+Rüschlikon
+Rüthi SG
+Rüti ZH
+S. Nazzaro
+SA Pünten
+Sachseln
+Safenwil
+Saland
+Salez-Sennwald
+Samstagern
+Sargans
+Sarnen
+Sattel-Aegeri
+Saxon
+Schachen (Herisau)
+Schachen LU
+Schaffhausen
+Schafhausen i.E.
+Schindellegi-F.
+Schinznach Dorf
+Schlatt TG
+Schlieren
+Schmerikon
+Schmitten FR
+Schneit
+Schwalmenacker
+Schwanden
+Schwarzenbach SG
+Schwarzenburg
+Schwerzenbach ZH
+Schwyz
+Schönbühl SBB
+Schönenwerd SO
+Schüpfen
+Schüpfheim
+Seftigen
+Selzach
+Sempach-N'kirch
+Semsales
+Sennhof-Kyburg
+Seon
+Seon Nord
+Seuzach
+Sevelen
+Siebnen-Wangen
+Siegershausen
+Sierre/Siders
+Siggenthal-W.
+Sihlbrugg
+Sihlwald
+Sins
+Sion
+Sirnach
+Sisikon
+Sissach
+Sisseln
+Solothurn
+Solothurn West
+Sonceboz-S.
+Soyhières
+Spiez
+St-Blaise-Lac
+St-Gingolph (SUI)
+St-Imier
+St-Jean
+St-Maurice
+St-Prex
+St-Triphon
+St-Ursanne
+St. Gallen
+St. Gallen Haggen
+St. Gallen St. Fiden
+St. Gallen Winkeln
+St. Katharinental W.
+St. Margrethen SG
+St. d. Galleria
+Stabio
+Stammheim
+Stans
+Stansstad
+Staz. della Galleria
+Steckborn
+Steffisburg
+Stein am Rhein
+Stein-Säckingen
+Steinerberg
+Steinhausen
+Steinmaur
+Stettbach
+Studen BE
+Stäfa
+Suberg-Grossa.
+Sugiez
+Suhr
+Sulgen
+Sumiswald-G.
+Sursee
+Sâles
+Taillepied
+Tann-Dürnten
+Tavannes
+Taverne-Torricella
+Tecknau
+Tenero
+Thalheim-Altikon
+Thalwil
+Thun
+Thurnen
+Thörishaus
+Thörishaus Station
+Tobel-Affeltrangen
+Toffen
+Travers
+Trubschachen
+Trübbach
+Tunnel des Crêtes
+Turbenthal
+Turgi
+Turtmann
+Twann
+Tägerwilen-Gottl.
+Tössmühle
+Tüscherz
+Uerikon
+Uetendorf
+Uetendorf Allmend
+Uetikon
+Uetliberg
+Uitikon W.
+Unterhaltsanlage
+Unterterzen
+Urdorf
+Uster
+Uttigen
+Uttwil
+Utzenstorf
+Uznach
+Uzwil
+Vallorbe
+Varzo
+Vauderens
+Vaulruz-Nord
+Vaulruz-Sud
+Vernex
+Versoix
+Vevey
+Vezia (bif)
+Villars-sous-Mont
+Villeneuve VD
+Visp
+Vuadens-Sud
+Vufflens-la-Ville
+Vuisternens
+W Wülflingen
+Wabern bei Bern
+Walchwil
+Wald ZH
+Waldibrücke
+Waldshut
+Walenstadt
+Walkringen
+Wallisellen
+Waltenschwil
+Wange a. Aare
+Wangen a. Aare
+Wangen bei Olten
+Wankdorf
+Wassen
+Wattwil
+Weesen
+Weiach-Kaiserstuhl
+Weinfelden
+Weinfelden Süd
+Weissenbach
+Wettingen
+Wetzikon ZH
+Wichtrach
+Wiggen
+Wil SG
+Wila
+Wildegg
+Wiler
+Willisau
+Wimmis
+Winterthur
+Winterthur Grüze
+Winterthur Seen
+Winterthur Töss
+Wittenbach
+Wohlen AG
+Wolfenschiessen
+Wolhusen
+Wollerau
+Worb SBB
+Wädenswil
+Wöschnau
+Würenlos
+Yverdon-les-Bains
+Yvonand
+Z Giesshübel
+Z Leimbach
+Z Manegg
+Z Tiefenbrunnen
+Z Triemli
+Zell LU
+Ziegelbrücke
+Zizers SBB
+Zofingen
+Zollikofen
+Zollikon
+Zug
+Zug Oberwil
+Zweidlen
+Zweisimmen
+Zwingen
+Zürich Altstetten
+Zürich Enge
+Zürich Flughafen
+Zürich HB
+Zürich HB SZU
+Zürich Hardbrücke
+Zürich Herdern
+Zürich Kollerwiese
+Zürich Mülligen
+Zürich Oerlikon
+Zürich Seebach
+Zürich Stadelhofen
+Zürich Süd
+Zürich Viadukt
+Zürich Vorbahnhof
+Zürich Wiedikon
+Zürich Wipkingen
+Zürich Wollishofen
+d'asphalte

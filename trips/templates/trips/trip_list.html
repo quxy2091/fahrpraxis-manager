@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -36,6 +37,10 @@
     padding:6px 12px;
     border-radius:6px;
     text-decoration:none;
+}
+
+.table-container{
+    overflow-x:auto;
 }
 
 table{
@@ -79,12 +84,15 @@ td{
 ➕ Neue Fahrt
 </a>
 
+<div class="table-container">
+
 <table>
 
 <tr>
     <th>Datum</th>
-    <th>Zug</th>
-    <th>Leistung</th>
+    <th>Zugnummer</th>
+    <th>Von</th>
+    <th>Nach</th>
     <th>Fahrzeug</th>
     <th>Stunden</th>
     <th>Bearbeiten</th>
@@ -97,7 +105,8 @@ td{
 
     <td>{{ trip.date }}</td>
     <td>{{ trip.train_number }}</td>
-    <td>{{ trip.service_type }}</td>
+    <td>{{ trip.from_station }}</td>
+    <td>{{ trip.to_station }}</td>
     <td>{{ trip.vehicle }}</td>
     <td>{{ trip.hours }}</td>
 
@@ -106,7 +115,7 @@ td{
             href="/fahrten/{{ trip.id }}/bearbeiten/"
             class="edit-button"
         >
-            ✏️ Bearbeiten
+            Bearbeiten
         </a>
     </td>
 
@@ -115,7 +124,7 @@ td{
             href="/fahrten/{{ trip.id }}/loeschen/"
             class="delete-button"
         >
-            🗑️ Löschen
+            Löschen
         </a>
     </td>
 
@@ -124,7 +133,7 @@ td{
 {% empty %}
 
 <tr>
-    <td colspan="7">
+    <td colspan="8">
         Keine Fahrten vorhanden
     </td>
 </tr>
@@ -132,6 +141,8 @@ td{
 {% endfor %}
 
 </table>
+
+</div>
 
 </div>
 

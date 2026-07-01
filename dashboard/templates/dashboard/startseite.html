@@ -25,10 +25,10 @@ Willkommen im Mitarbeiterportal.
 <li>
 
 <a
-href="{{ planung.url }}"
+href="{{ planung.file.url }}"
 target="_blank"
 >
-📄 {{ planung.name }}
+📄 {{ planung.title }}
 </a>
 
 </li>
@@ -52,18 +52,18 @@ Keine Planungen vorhanden.
 <h2>Schnellzugriffe</h2>
 
 <p>
-<a href="/mein-cockpit/" class="button">
-Mein Cockpit
+
+<a
+href="/Mindestfahrpraxis/"
+class="button"
+>
+Mindestfahrpraxis
 </a>
+
 </p>
 
 <p>
-<a href="/fahrten/" class="button">
-Meine Fahrten
-</a>
-</p>
 
-<p>
 <a
 href="https://vorgaben.sbb.ch/"
 target="_blank"
@@ -71,6 +71,7 @@ class="button"
 >
 SBB Vorgaben
 </a>
+
 </p>
 
 </div>

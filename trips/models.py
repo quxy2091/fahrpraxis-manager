@@ -2,14 +2,19 @@ from django.db import models
 
 from employees.models import Employee
 from vehicles.models import Vehicle
+from stations.models import Station
 
 
 class Trip(models.Model):
 
-    SERVICE_CHOICES = [
-        ('zug', 'Zug'),
-        ('rads', 'RadS'),
-        ('rabe', 'RaBe'),
+    TRAFFIC_CHOICES = [
+        ("zug", "Zug"),
+        ("rangieren", "Rangierbewegung"),
+    ]
+
+    SHUNTING_CHOICES = [
+        ("direkt", "Direkt"),
+        ("indirekt", "Indirekt"),
     ]
 
     employee = models.ForeignKey(
@@ -19,22 +24,42 @@ class Trip(models.Model):
 
     date = models.DateField()
 
-    train_number = models.CharField(
-        max_length=50
+    traffic_type = models.CharField(
+        max_length=20,
+        choices=TRAFFIC_CHOICES,
+        default="zug"
     )
 
-    service_type = models.CharField(
-        max_length=10,
-        choices=SERVICE_CHOICES
+    shunting_type = models.CharField(
+        max_length=20,
+        choices=SHUNTING_CHOICES,
+        blank=True
+    )
+
+    train_number = models.CharField(
+        max_length=6,
+        blank=True
+    )
+
+    from_station = models.ForeignKey(
+        Station,
+        on_delete=models.PROTECT,
+        related_name="departures"
+    )
+
+    to_station = models.ForeignKey(
+        Station,
+        on_delete=models.PROTECT,
+        related_name="arrivals",
+        blank=True,
+        null=True
     )
 
     vehicle = models.ForeignKey(
         Vehicle,
-        on_delete=models.PROTECT
-    )
-
-    etcs = models.BooleanField(
-        default=False
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True
     )
 
     hours = models.DecimalField(
@@ -55,4 +80,16 @@ class Trip(models.Model):
     )
 
     def __str__(self):
-        return f"{self.date} - {self.train_number}"
+
+        nummer = self.train_number or "Rangierbewegung"
+
+        if self.to_station:
+            strecke = f"{self.from_station} - {self.to_station}"
+        else:
+            strecke = f"{self.from_station}"
+
+        return (
+            f"{self.date} | "
+            f"{nummer} | "
+            f"{strecke}"
+        )

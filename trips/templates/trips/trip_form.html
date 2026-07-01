@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card form-card">
+
+<h1 class="page-title">
+{{ title }}
+</h1>
+
+{% if form.errors %}
+
+<div style="background:#ffe5e5;border:1px solid #cc0000;padding:15px;margin-bottom:20px;border-radius:8px;">
+
+<b>Bitte folgende Fehler korrigieren:</b>
+
+{{ form.errors }}
+
+</div>
+
+{% endif %}
+
+<form method="post">
+
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button
+type="submit"
+class="save-button"
+id="save-button"
+>
+
+{{ button_text }}
+
+</button>
+
+</form>
+
+</div>
+
+<script>
+
+const form=document.querySelector("form");
+
+const button=document.getElementById("save-button");
+
+form.addEventListener(
+
+"submit",
+
+function(){
+
+button.disabled=true;
+
+button.innerHTML="Speichern...";
+
+}
+
+);
+
+</script>
+
+{% endblock %}

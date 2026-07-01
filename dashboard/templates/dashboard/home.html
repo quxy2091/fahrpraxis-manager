@@ -5,38 +5,49 @@
 
 <style>
 
-h1{
-    margin-top:0;
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.logo-box{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.logo-box img{
+    height:80px;
+}
+
+.user-name{
+    font-size:28px;
+    font-weight:bold;
     color:#244C82;
 }
 
-.progress{
-    width:100%;
-    background:#dfe5e3;
-    height:32px;
-    border-radius:20px;
-    overflow:hidden;
+.user-category{
+    font-size:18px;
+    color:#666;
 }
 
-.progress-bar{
-    background:#244C82;
-    height:32px;
-    color:white;
-    text-align:center;
-    line-height:32px;
-    font-weight:bold;
+.year-navigation{
+    margin-top:20px;
 }
 
 .year-link{
     display:inline-block;
-    padding:10px 16px;
+    padding:10px 18px;
     margin-right:10px;
     margin-bottom:10px;
     border-radius:10px;
     text-decoration:none;
-    background:#e9ecef;
-    color:black;
     font-weight:bold;
+    background:#eceff3;
+    color:#244C82;
 }
 
 .year-current{
@@ -44,31 +55,187 @@ h1{
     color:white;
 }
 
-.logo-title{
+.summary-card{
+    margin-top:25px;
+}
+
+.summary-header{
     display:flex;
+    justify-content:space-between;
     align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.new-trip-button{
+
+    background:#244C82;
+    color:white;
+    padding:12px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.2s;
+
+}
+
+.new-trip-button:hover{
+
+    background:#17375e;
+
+}
+
+.hours-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
+    margin-top:25px;
+
 }
 
-.logo-title img{
-    height:80px;
+.info-box{
+
+    background:#f5f7fb;
+    border-radius:12px;
+    padding:20px;
+
 }
 
-.status-icon{
-    height:24px;
-    vertical-align:middle;
+.info-title{
+
+    color:#666;
+    font-size:15px;
+
+}
+
+.info-value{
+
+    font-size:34px;
+    font-weight:bold;
+    color:#244C82;
+
+}
+
+.progress{
+
+    width:100%;
+    height:30px;
+    background:#d9dfe5;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:25px;
+
+}
+
+.progress-bar{
+
+    height:100%;
+    background:#244C82;
+    color:white;
+    font-weight:bold;
+    text-align:center;
+    line-height:30px;
+
+}
+
+.trip-card{
+
+    margin-top:30px;
+
+}
+
+.trip-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+
+}
+
+.search-box{
+
+    padding:10px;
+    width:260px;
+    border-radius:8px;
+    border:1px solid #ccc;
+
+}
+
+.table-scroll{
+
+    margin-top:20px;
+    overflow:auto;
+    max-height:550px;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#f3f6fa;
+    position:sticky;
+    top:0;
+    z-index:2;
+
+}
+
+th,
+td{
+
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+
+}
+
+.action{
+
+    text-decoration:none;
+    color:white;
+    padding:7px 14px;
+    border-radius:7px;
+    font-size:14px;
+    display:inline-block;
+
+}
+
+.edit{
+
+    background:#244C82;
+
+}
+
+.delete{
+
+    background:#c62828;
+
 }
 
 @media(max-width:768px){
 
-    .logo-title{
-        flex-direction:column;
-        align-items:flex-start;
-    }
+.dashboard-header,
+.summary-header,
+.trip-header{
 
-    table{
-        font-size:14px;
-    }
+    flex-direction:column;
+    align-items:flex-start;
+
+}
+
+.search-box{
+
+    width:100%;
+
+}
 
 }
 
@@ -76,7 +243,9 @@ h1{
 
 <div class="card">
 
-<div class="logo-title">
+<div class="dashboard-header">
+
+<div class="logo-box">
 
 <img
 src="{% static 'images/semita.png' %}"
@@ -85,20 +254,20 @@ alt="Semita"
 
 <div>
 
-<h1>Fahrpraxis Manager</h1>
+<div class="user-name">
 
-{% if employee %}
-
-<h2>
 {{ employee.first_name }}
 {{ employee.last_name }}
-</h2>
 
-<p>
-Kategorie: {{ employee.category }}
-</p>
+</div>
 
-{% endif %}
+<div class="user-category">
+
+Kategorie {{ employee.category }}
+
+</div>
+
+</div>
 
 </div>
 
@@ -110,127 +279,295 @@ Kategorie: {{ employee.category }}
 
 <h2>Jahresnavigation</h2>
 
-<a href="/mein-cockpit/jahr/{{ base_year }}/"
-class="year-link {% if current_year == base_year %}year-current{% endif %}">
+<div class="year-navigation">
+
+<a
+href="/mein-cockpit/jahr/{{ base_year }}/"
+class="year-link {% if current_year == base_year %}year-current{% endif %}"
+>
 {{ base_year }}
 </a>
 
-<a href="/mein-cockpit/jahr/{{ base_year|add:'-1' }}/"
-class="year-link {% if current_year == base_year|add:'-1' %}year-current{% endif %}">
+<a
+href="/mein-cockpit/jahr/{{ base_year|add:'-1' }}/"
+class="year-link {% if current_year == base_year|add:'-1' %}year-current{% endif %}"
+>
 {{ base_year|add:"-1" }}
 </a>
 
-<a href="/mein-cockpit/jahr/{{ base_year|add:'-2' }}/"
-class="year-link {% if current_year == base_year|add:'-2' %}year-current{% endif %}">
+<a
+href="/mein-cockpit/jahr/{{ base_year|add:'-2' }}/"
+class="year-link {% if current_year == base_year|add:'-2' %}year-current{% endif %}"
+>
 {{ base_year|add:"-2" }}
 </a>
 
-<a href="/mein-cockpit/jahr/{{ base_year|add:'-3' }}/"
-class="year-link {% if current_year == base_year|add:'-3' %}year-current{% endif %}">
+<a
+href="/mein-cockpit/jahr/{{ base_year|add:'-3' }}/"
+class="year-link {% if current_year == base_year|add:'-3' %}year-current{% endif %}"
+>
 {{ base_year|add:"-3" }}
 </a>
 
 </div>
 
-<div class="card">
+</div>
+<div class="card summary-card">
 
-<h2>Fahrpraxis {{ current_year }}</h2>
+<div class="summary-header">
 
-<p>Sollstunden: {{ target_hours }}</p>
+<h2>
 
-<p>Iststunden: {{ total_hours }}</p>
+Fahrpraxis {{ current_year }}
+
+</h2>
+
+<a
+href="/fahrten/neu/"
+class="new-trip-button"
+>
++ Neue Fahrt erfassen
+</a>
+
+</div>
+
+<div class="hours-grid">
+
+<div class="info-box">
+
+<div class="info-title">
+
+Sollstunden
+
+</div>
+
+<div class="info-value">
+
+{{ target_hours }} h
+
+</div>
+
+</div>
+
+<div class="info-box">
+
+<div class="info-title">
+
+Iststunden
+
+</div>
+
+<div class="info-value">
+
+{{ total_hours }} h
+
+</div>
+
+</div>
+
+<div class="info-box">
+
+<div class="info-title">
+
+Reststunden
+
+</div>
+
+<div class="info-value">
+
+{% if remaining > 0 %}
+{{ remaining }} h
+{% else %}
+0 h
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
 
 <div class="progress">
 
 <div
 class="progress-bar"
-style="width:{{ percent }}%;"
+style="width:{% if percent > 100 %}100{% else %}{{ percent }}{% endif %}%"
 >
+
+{% if percent > 100 %}
+100 %
+{% else %}
 {{ percent }} %
-</div>
+{% endif %}
 
 </div>
 
-<br>
+</div>
 
-<a
-href="/fahrten/neu/"
-class="button"
+{% if remaining <= 0 %}
+
+<p style="margin-top:15px;color:green;font-weight:bold;">
+
+✓ Mindestfahrpraxis erfüllt
+
+</p>
+
+{% endif %}
+
+</div>
+
+<div class="card trip-card">
+
+<div class="trip-header">
+
+<h2>
+
+Fahrten {{ current_year }}
+
+</h2>
+
+<input
+type="text"
+id="tripSearch"
+class="search-box"
+placeholder="Fahrt suchen..."
 >
-Neue Fahrt erfassen
-</a>
 
 </div>
 
-<div class="card">
+<div class="table-scroll">
 
-<h2>Fahrten {{ current_year }}</h2>
+<table id="tripTable">
 
-<table>
+<thead>
 
 <tr>
+
 <th>Datum</th>
+
+<th>Art</th>
+
 <th>Zug</th>
+
+<th>Von</th>
+
+<th>Nach</th>
+
 <th>Fahrzeug</th>
-<th>Stunden</th>
+
+<th>Std.</th>
+
+<th>Bearbeiten</th>
+
+<th>Löschen</th>
+
 </tr>
+
+</thead>
+
+<tbody>
 
 {% for trip in recent_trips %}
 
 <tr>
-<td>{{ trip.date }}</td>
-<td>{{ trip.train_number }}</td>
-<td>{{ trip.vehicle }}</td>
-<td>{{ trip.hours }}</td>
+
+<td>
+
+{{ trip.date }}
+
+</td>
+
+<td>
+
+{% if trip.traffic_type == "zug" %}
+
+Zug
+
+{% elif trip.shunting_type == "direkt" %}
+
+Direkt
+
+{% else %}
+
+Indirekt
+
+{% endif %}
+
+</td>
+
+<td>
+
+{% if trip.train_number %}
+
+{{ trip.train_number }}
+
+{% else %}
+
+-
+
+{% endif %}
+
+</td>
+
+<td>
+
+{{ trip.from_station }}
+
+</td>
+
+<td>
+
+{{ trip.to_station|default:"-" }}
+
+</td>
+
+<td>
+
+{{ trip.vehicle|default:"-" }}
+
+</td>
+
+<td>
+
+{{ trip.hours }}
+
+</td>
+
+<td>
+
+<a
+href="/fahrten/{{ trip.id }}/bearbeiten/"
+class="action edit"
+>
+
+Bearbeiten
+
+</a>
+
+</td>
+
+<td>
+
+<a
+href="/fahrten/{{ trip.id }}/loeschen/"
+class="action delete"
+>
+
+Löschen
+
+</a>
+
+</td>
+
 </tr>
 
 {% empty %}
 
 <tr>
-<td colspan="4">
-Keine Fahrten vorhanden
-</td>
-</tr>
 
-{% endfor %}
+<td colspan="9">
 
-</table>
-
-</div>
-
-{% if employee and employee.role == "admin" %}
-
-<div class="card">
-
-<h2>Fahrzeug-Auffrischungen</h2>
-
-<table>
-
-<tr>
-<th>Fahrzeug</th>
-<th>Letzte Fahrt</th>
-<th>Tage</th>
-<th>Status</th>
-</tr>
-
-{% for item in vehicle_refresh %}
-
-<tr>
-
-<td>{{ item.vehicle }}</td>
-
-<td>{{ item.last_trip }}</td>
-
-<td>{{ item.days_since }}</td>
-
-<td>
-
-<img
-src="{% static item.status_icon %}"
-class="status-icon"
-alt="{{ item.status }}"
-title="{{ item.status }}"
->
+Keine Fahrten vorhanden.
 
 </td>
 
@@ -238,10 +575,84 @@ title="{{ item.status }}"
 
 {% endfor %}
 
+</tbody>
+
 </table>
 
 </div>
 
-{% endif %}
+</div>
+<script>
+
+const searchInput =
+document.getElementById("tripSearch");
+
+searchInput.addEventListener(
+    "keyup",
+    function(){
+
+        const filter =
+        this.value.toLowerCase();
+
+        const rows =
+        document.querySelectorAll(
+            "#tripTable tbody tr"
+        );
+
+        rows.forEach(function(row){
+
+            const text =
+            row.innerText.toLowerCase();
+
+            if(text.indexOf(filter)>-1){
+
+                row.style.display="";
+
+            }else{
+
+                row.style.display="none";
+
+            }
+
+        });
+
+    }
+);
+
+const progressBar =
+document.querySelector(".progress-bar");
+
+if(progressBar){
+
+    const value =
+    parseFloat(
+        progressBar.innerText
+    );
+
+    if(value>=100){
+
+        progressBar.style.background=
+        "#2e7d32";
+
+    }else if(value>=75){
+
+        progressBar.style.background=
+        "#1565c0";
+
+    }else if(value>=50){
+
+        progressBar.style.background=
+        "#ef6c00";
+
+    }else{
+
+        progressBar.style.background=
+        "#c62828";
+
+    }
+
+}
+
+</script>
 
 {% endblock %}

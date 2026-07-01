@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import Trip
 
 
@@ -9,18 +10,19 @@ class TripAdmin(admin.ModelAdmin):
         "date",
         "employee",
         "train_number",
-        "service_type",
+        "from_station",
+        "to_station",
         "vehicle",
         "hours",
-        "etcs",
     )
 
     list_filter = (
-        "service_type",
         "vehicle",
-        "etcs",
+        "from_station",
+        "to_station",
     )
 
     search_fields = (
         "train_number",
+        "notes",
     )

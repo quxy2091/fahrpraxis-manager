@@ -45,9 +45,7 @@ def create_trip(request):
 
     if request.method == "POST":
 
-        form = TripForm(
-            request.POST
-        )
+        form = TripForm(request.POST)
 
         if form.is_valid():
 
@@ -60,7 +58,7 @@ def create_trip(request):
             trip.save()
 
             return redirect(
-                "/fahrten/"
+                "/mein-cockpit/"
             )
 
     else:
@@ -69,9 +67,11 @@ def create_trip(request):
 
     return render(
         request,
-        "trips/create_trip.html",
+        "trips/trip_form.html",
         {
-            "form": form
+            "form": form,
+            "title": "Neue Fahrt erfassen",
+            "button_text": "Fahrt speichern",
         }
     )
 
@@ -107,8 +107,8 @@ def edit_trip(
             form.save()
 
             return redirect(
-                "/fahrten/"
-            )
+    		"/mein-cockpit/"
+	) 
 
     else:
 
@@ -118,10 +118,12 @@ def edit_trip(
 
     return render(
         request,
-        "trips/edit_trip.html",
+        "trips/trip_form.html",
         {
             "form": form,
-            "trip": trip
+            "trip": trip,
+            "title": "Fahrt bearbeiten",
+            "button_text": "Änderungen speichern",
         }
     )
 
@@ -150,7 +152,7 @@ def delete_trip(
         trip.delete()
 
         return redirect(
-            "/fahrten/"
+            "/mein-cockpit/"
         )
 
     return render(
