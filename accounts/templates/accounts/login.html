@@ -95,10 +95,36 @@ button:hover{
     margin-bottom:15px;
 }
 
+.password-reset{
+
+    display:block;
+
+    margin-top:18px;
+
+    color:#244C82;
+
+    text-decoration:none;
+
+    font-size:14px;
+}
+
+.password-reset:hover{
+    text-decoration:underline;
+}
+
 .version{
     color:#777;
     font-size:12px;
     margin-top:25px;
+}
+
+.support-link{
+    color:#244C82;
+    text-decoration:none;
+}
+
+.support-link:hover{
+    text-decoration:underline;
 }
 
 </style>
@@ -149,13 +175,25 @@ Anmelden
 
 </form>
 
+<a
+href="{% url 'password_reset' %}"
+class="password-reset"
+>
+Passwort vergessen?
+</a>
+
 <div class="version">
 Version 1.0.0<br>
 © Semita GmbH<br>
 Support:
-<a href="mailto:michel.schaub@semita-gmbh.ch?subject=Support Fahrpraxis Manager">
+<a
+href="mailto:michel.schaub@semita-gmbh.ch?subject=Support Fahrpraxis Manager"
+class="support-link"
+>
 michel.schaub@semita-gmbh.ch
 </a>
+
+</div>
 
 </div>
 

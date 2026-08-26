@@ -67,6 +67,12 @@
     gap:15px;
 }
 
+.button-group{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
 .new-trip-button{
 
     background:#244C82;
@@ -82,6 +88,42 @@
 .new-trip-button:hover{
 
     background:#17375e;
+
+}
+
+.pdf-button{
+
+    background:#c62828;
+    color:white;
+    padding:12px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.2s;
+
+}
+
+.pdf-button:hover{
+
+    background:#8e1b1b;
+
+}
+
+.excel-button{
+
+    background:#2e7d32;
+    color:white;
+    padding:12px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.2s;
+
+}
+
+.excel-button:hover{
+
+    background:#1b5e20;
 
 }
 
@@ -231,6 +273,21 @@ td{
 
 }
 
+.button-group{
+
+    width:100%;
+    flex-direction:column;
+
+}
+
+.button-group a{
+
+    width:100%;
+    box-sizing:border-box;
+    text-align:center;
+
+}
+
 .search-box{
 
     width:100%;
@@ -240,6 +297,7 @@ td{
 }
 
 </style>
+
 
 <div class="card">
 
@@ -275,43 +333,29 @@ Kategorie {{ employee.category }}
 
 </div>
 
+
 <div class="card">
 
 <h2>Jahresnavigation</h2>
 
 <div class="year-navigation">
 
-<a
-href="/mein-cockpit/jahr/{{ base_year }}/"
-class="year-link {% if current_year == base_year %}year-current{% endif %}"
->
-{{ base_year }}
-</a>
+{% for year in available_years %}
 
 <a
-href="/mein-cockpit/jahr/{{ base_year|add:'-1' }}/"
-class="year-link {% if current_year == base_year|add:'-1' %}year-current{% endif %}"
+href="/mein-cockpit/jahr/{{ year }}/"
+class="year-link {% if current_year == year %}year-current{% endif %}"
 >
-{{ base_year|add:"-1" }}
+{{ year }}
 </a>
 
-<a
-href="/mein-cockpit/jahr/{{ base_year|add:'-2' }}/"
-class="year-link {% if current_year == base_year|add:'-2' %}year-current{% endif %}"
->
-{{ base_year|add:"-2" }}
-</a>
-
-<a
-href="/mein-cockpit/jahr/{{ base_year|add:'-3' }}/"
-class="year-link {% if current_year == base_year|add:'-3' %}year-current{% endif %}"
->
-{{ base_year|add:"-3" }}
-</a>
+{% endfor %}
 
 </div>
 
 </div>
+
+
 <div class="card summary-card">
 
 <div class="summary-header">
@@ -322,6 +366,9 @@ Fahrpraxis {{ current_year }}
 
 </h2>
 
+
+<div class="button-group">
+
 <a
 href="/fahrten/neu/"
 class="new-trip-button"
@@ -329,9 +376,28 @@ class="new-trip-button"
 + Neue Fahrt erfassen
 </a>
 
+<a
+href="/mein-cockpit/jahr/{{ current_year }}/pdf/"
+class="pdf-button"
+target="_blank"
+>
+PDF
+</a>
+
+<a
+href="/mein-cockpit/jahr/{{ current_year }}/excel/"
+class="excel-button"
+>
+Excel
+</a>
+
 </div>
 
+</div>
+
+
 <div class="hours-grid">
+
 
 <div class="info-box">
 
@@ -349,6 +415,7 @@ Sollstunden
 
 </div>
 
+
 <div class="info-box">
 
 <div class="info-title">
@@ -365,6 +432,7 @@ Iststunden
 
 </div>
 
+
 <div class="info-box">
 
 <div class="info-title">
@@ -376,16 +444,22 @@ Reststunden
 <div class="info-value">
 
 {% if remaining > 0 %}
+
 {{ remaining }} h
+
 {% else %}
+
 0 h
+
 {% endif %}
 
 </div>
 
 </div>
 
+
 </div>
+
 
 <div class="progress">
 
@@ -395,18 +469,25 @@ style="width:{% if percent > 100 %}100{% else %}{{ percent }}{% endif %}%"
 >
 
 {% if percent > 100 %}
+
 100 %
+
 {% else %}
+
 {{ percent }} %
+
 {% endif %}
 
 </div>
 
 </div>
 
+
 {% if remaining <= 0 %}
 
-<p style="margin-top:15px;color:green;font-weight:bold;">
+<p
+style="margin-top:15px;color:green;font-weight:bold;"
+>
 
 ✓ Mindestfahrpraxis erfüllt
 
@@ -414,7 +495,9 @@ style="width:{% if percent > 100 %}100{% else %}{{ percent }}{% endif %}%"
 
 {% endif %}
 
+
 </div>
+
 
 <div class="card trip-card">
 
@@ -434,6 +517,7 @@ placeholder="Fahrt suchen..."
 >
 
 </div>
+
 
 <div class="table-scroll">
 
@@ -465,6 +549,7 @@ placeholder="Fahrt suchen..."
 
 </thead>
 
+
 <tbody>
 
 {% for trip in recent_trips %}
@@ -476,6 +561,7 @@ placeholder="Fahrt suchen..."
 {{ trip.date }}
 
 </td>
+
 
 <td>
 
@@ -495,6 +581,7 @@ Indirekt
 
 </td>
 
+
 <td>
 
 {% if trip.train_number %}
@@ -509,11 +596,13 @@ Indirekt
 
 </td>
 
+
 <td>
 
 {{ trip.from_station }}
 
 </td>
+
 
 <td>
 
@@ -521,17 +610,20 @@ Indirekt
 
 </td>
 
+
 <td>
 
 {{ trip.vehicle|default:"-" }}
 
 </td>
 
+
 <td>
 
 {{ trip.hours }}
 
 </td>
+
 
 <td>
 
@@ -545,6 +637,7 @@ Bearbeiten
 </a>
 
 </td>
+
 
 <td>
 
@@ -560,6 +653,7 @@ Löschen
 </td>
 
 </tr>
+
 
 {% empty %}
 
@@ -582,45 +676,54 @@ Keine Fahrten vorhanden.
 </div>
 
 </div>
+
+
 <script>
 
 const searchInput =
 document.getElementById("tripSearch");
 
-searchInput.addEventListener(
-    "keyup",
-    function(){
 
-        const filter =
-        this.value.toLowerCase();
+if(searchInput){
 
-        const rows =
-        document.querySelectorAll(
-            "#tripTable tbody tr"
-        );
+    searchInput.addEventListener(
+        "keyup",
+        function(){
 
-        rows.forEach(function(row){
+            const filter =
+            this.value.toLowerCase();
 
-            const text =
-            row.innerText.toLowerCase();
+            const rows =
+            document.querySelectorAll(
+                "#tripTable tbody tr"
+            );
 
-            if(text.indexOf(filter)>-1){
+            rows.forEach(function(row){
 
-                row.style.display="";
+                const text =
+                row.innerText.toLowerCase();
 
-            }else{
+                if(text.indexOf(filter)>-1){
 
-                row.style.display="none";
+                    row.style.display="";
 
-            }
+                }else{
 
-        });
+                    row.style.display="none";
 
-    }
-);
+                }
+
+            });
+
+        }
+    );
+
+}
+
 
 const progressBar =
 document.querySelector(".progress-bar");
+
 
 if(progressBar){
 
@@ -654,5 +757,6 @@ if(progressBar){
 }
 
 </script>
+
 
 {% endblock %}

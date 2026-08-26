@@ -8,6 +8,14 @@ class StationAdmin(admin.ModelAdmin):
 
     list_display = (
         "name",
+        "x",
+        "y",
+        "active",
+    )
+
+    list_editable = (
+        "x",
+        "y",
         "active",
     )
 
@@ -17,4 +25,8 @@ class StationAdmin(admin.ModelAdmin):
 
     list_filter = (
         "active",
+    )
+
+    ordering = (
+        "name",
     )

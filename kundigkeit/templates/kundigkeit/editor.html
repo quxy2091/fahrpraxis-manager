@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+.wrapper{
+
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:20px;
+
+}
+
+.sidebar{
+
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    height:88vh;
+    overflow:auto;
+
+}
+
+.station{
+
+    padding:10px;
+    margin-bottom:5px;
+    cursor:pointer;
+    border-radius:6px;
+}
+
+.station:hover{
+
+    background:#e8eef8;
+
+}
+
+.station.active{
+
+    background:#244C82;
+    color:white;
+
+}
+
+.map{
+
+    position:relative;
+    background:#ddd;
+    border-radius:12px;
+    overflow:hidden;
+    height:88vh;
+
+}
+
+.map img{
+
+    width:100%;
+    height:100%;
+    object-fit:contain;
+
+}
+
+#overlay{
+
+    position:absolute;
+    inset:0;
+
+}
+
+.point{
+
+    position:absolute;
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    background:#1565c0;
+
+    border:2px solid white;
+
+    transform:translate(-50%,-50%);
+
+}
+
+</style>
+
+<h1>Koordinaten-Editor</h1>
+
+<div class="wrapper">
+
+<div class="sidebar">
+
+{% for station in stations %}
+
+<div
+class="station"
+data-id="{{ station.id }}"
+>
+
+{{ station.name }}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<div
+class="map"
+id="map"
+>
+
+<img
+src="{% static 'maps/schweiz.png' %}"
+>
+
+<div id="overlay"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let selected=null;
+
+document
+.querySelectorAll(".station")
+.forEach(function(item){
+
+item.onclick=function(){
+
+document
+.querySelectorAll(".station")
+.forEach(function(a){
+
+a.classList.remove("active");
+
+});
+
+item.classList.add("active");
+
+selected=item;
+
+};
+
+});
+
+document
+.getElementById("overlay")
+.onclick=function(event){
+
+if(selected==null){
+
+alert("Bitte zuerst links einen Betriebspunkt auswählen.");
+
+return;
+
+}
+
+const rect=this.getBoundingClientRect();
+
+const x=event.clientX-rect.left;
+
+const y=event.clientY-rect.top;
+
+const point=document.createElement("div");
+
+point.className="point";
+
+point.style.left=x+"px";
+
+point.style.top=y+"px";
+
+this.appendChild(point);
+
+fetch(
+
+"/kundigkeit/save-position/",
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json",
+
+"X-CSRFToken":"{{ csrf_token }}"
+
+},
+
+body:JSON.stringify({
+
+id:selected.dataset.id,
+
+x:x,
+
+y:y
+
+})
+
+}
+
+)
+
+.then(r=>r.json())
+
+.then(function(){
+
+selected.style.background="#2e7d32";
+
+selected.style.color="white";
+
+selected=null;
+
+document
+.querySelectorAll(".station")
+.forEach(function(a){
+
+a.classList.remove("active");
+
+});
+
+});
+
+};
+
+</script>
+
+{% endblock %}

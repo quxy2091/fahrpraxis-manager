@@ -9,17 +9,102 @@
     margin-top:0;
 }
 
+.header-grid{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:20px;
+    align-items:start;
+}
+
+.user-info{
+    margin-top:10px;
+}
+
+.user-info p{
+    margin:8px 0;
+}
+
+
+/* =========================
+   JAHRESNAVIGATION
+   ========================= */
+
+.year-navigation{
+    margin-top:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.year-link{
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    background:#eceff3;
+    color:#244C82;
+}
+
+.year-link:hover{
+    background:#dce5f2;
+}
+
+.year-current{
+    background:#244C82;
+    color:white;
+}
+
+.year-current:hover{
+    background:#244C82;
+    color:white;
+}
+
+
+/* =========================
+   PDF BEREICH
+   ========================= */
+
+.pdf-area{
+    margin-top:25px;
+    padding-top:20px;
+    border-top:1px solid #ddd;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.pdf-info{
+    color:#555;
+}
+
+.pdf-button{
+    display:inline-block;
+    background:#244C82;
+    color:white !important;
+    padding:12px 22px;
+    border-radius:8px;
+    text-decoration:none !important;
+    font-weight:bold;
+    border:0;
+    cursor:pointer;
+}
+
+.pdf-button:hover{
+    background:#19385f;
+}
+
+
+/* =========================
+   STATISTIK
+   ========================= */
+
 .stat-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
     gap:20px;
-}
-
-.stat-box{
-    background:#f8f9fb;
-    padding:20px;
-    border-radius:12px;
-    border-left:5px solid #244C82;
 }
 
 .stat-value{
@@ -27,6 +112,11 @@
     font-weight:bold;
     color:#244C82;
 }
+
+
+/* =========================
+   FORTSCHRITT
+   ========================= */
 
 .progress{
     width:100%;
@@ -45,6 +135,16 @@
     font-weight:bold;
 }
 
+
+/* =========================
+   TABELLE
+   ========================= */
+
+.table-scroll{
+    width:100%;
+    overflow-x:auto;
+}
+
 table{
     width:100%;
     border-collapse:collapse;
@@ -61,6 +161,11 @@ td{
     text-align:left;
 }
 
+
+/* =========================
+   BADGES / STATUS
+   ========================= */
+
 .badge{
     display:inline-block;
     padding:6px 10px;
@@ -70,127 +175,482 @@ td{
     font-weight:bold;
 }
 
+.status{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:15px;
+    background:#e8eef8;
+    color:#244C82;
+    font-size:13px;
+    font-weight:bold;
+    margin-right:6px;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.button{
+    display:inline-block;
+    background:#244C82;
+    color:white;
+    padding:11px 18px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.button:hover{
+    opacity:0.9;
+}
+
+.secondary{
+    background:#777;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
 @media(max-width:768px){
+
+    .header-grid{
+        grid-template-columns:1fr;
+    }
 
     .stat-value{
         font-size:24px;
+    }
+
+    table{
+        font-size:14px;
+    }
+
+    .pdf-area{
+        align-items:flex-start;
+        flex-direction:column;
     }
 
 }
 
 </style>
 
+
+<!-- =====================================================
+     MITARBEITER-INFORMATIONEN
+     ===================================================== -->
+
 <div class="card">
 
-<h1 class="page-title">
-👤 Mitarbeiter-Cockpit
-</h1>
+    <div class="header-grid">
 
-<h2>
-{{ employee.first_name }}
-{{ employee.last_name }}
-</h2>
+        <div>
 
-<p>
-<span class="badge">
-{{ employee.category }}
-</span>
-</p>
+            <h1 class="page-title">
+                Mitarbeiter-Cockpit
+            </h1>
 
-<p>
-<strong>Rolle:</strong>
-{{ employee.role }}
-</p>
+            <h2>
+                {{ employee.user.first_name }}
+                {{ employee.user.last_name }}
+            </h2>
+
+            <div class="user-info">
+
+                <p>
+                    <strong>E-Mail:</strong>
+                    {{ employee.user.email }}
+                </p>
+
+                <p>
+                    <strong>Kategorie:</strong>
+
+                    {% if employee.category %}
+
+                        <span class="badge">
+                            {{ employee.category }}
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge">
+                            Keine Kategorie
+                        </span>
+
+                    {% endif %}
+
+                </p>
+
+                <p>
+                    <strong>Rolle:</strong>
+                    {{ employee.get_role_display }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+
+                    {% if employee.active %}
+
+                        <span class="status">
+                            Aktiv
+                        </span>
+
+                    {% else %}
+
+                        <span class="status">
+                            Inaktiv
+                        </span>
+
+                    {% endif %}
+
+
+                    {% if employee.etcs_level1 %}
+
+                        <span class="status">
+                            ETCS Level 1
+                        </span>
+
+                    {% endif %}
+
+
+                    {% if employee.etcs_level2 %}
+
+                        <span class="status">
+                            ETCS Level 2
+                        </span>
+
+                    {% endif %}
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <a
+                href="/mitarbeiter/{{ employee.id }}/bearbeiten/"
+                class="button"
+            >
+                Benutzer bearbeiten
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
+
+
+<!-- =====================================================
+     JAHRESNAVIGATION + PDF
+     ===================================================== -->
+
+<div class="card">
+
+    <h2>
+        Jahresnavigation
+    </h2>
+
+    <div class="year-navigation">
+
+        {% for year_item in available_years %}
+
+            <a
+                href="/mitarbeiter/{{ employee.id }}/jahr/{{ year_item }}/"
+                class="year-link {% if current_year == year_item %}year-current{% endif %}"
+            >
+                {{ year_item }}
+            </a>
+
+        {% empty %}
+
+            <span>
+                Keine Jahre verfügbar
+            </span>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="pdf-area">
+
+        <div class="pdf-info">
+
+            <strong>
+                Jahresauswertung
+            </strong>
+
+            <br>
+
+            PDF für das aktuell ausgewählte Jahr
+            <strong>{{ current_year }}</strong>
+
+        </div>
+
+
+        <a
+            href="/mitarbeiter/{{ employee.id }}/jahr/{{ current_year }}/pdf/"
+            class="pdf-button"
+            target="_blank"
+        >
+            PDF Jahresauswertung {{ current_year }}
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     STATISTIK
+     ===================================================== -->
 
 <div class="stat-grid">
 
+    <div class="card">
+
+        <h3>
+            Jahr
+        </h3>
+
+        <div class="stat-value">
+            {{ current_year }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Iststunden
+        </h3>
+
+        <div class="stat-value">
+            {{ total_hours }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Sollstunden
+        </h3>
+
+        <div class="stat-value">
+            {{ target_hours }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Reststunden
+        </h3>
+
+        <div class="stat-value">
+            {{ remaining }}
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FAHRPRAXIS-FORTSCHRITT
+     ===================================================== -->
+
 <div class="card">
 
-<h3>Jahr</h3>
+    <h2>
+        Fahrpraxis-Fortschritt {{ current_year }}
+    </h2>
 
-<div class="stat-value">
-{{ current_year }}
+    <div class="progress">
+
+        <div
+            class="progress-bar"
+            style="width:{% if percent > 100 %}100{% else %}{{ percent }}{% endif %}%;"
+        >
+
+            {% if percent > 100 %}
+
+                100 %
+
+            {% else %}
+
+                {{ percent }} %
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
 </div>
 
-</div>
+
+<!-- =====================================================
+     FAHRTEN
+     ===================================================== -->
 
 <div class="card">
 
-<h3>Iststunden</h3>
+    <h2>
+        Fahrten {{ current_year }}
+    </h2>
 
-<div class="stat-value">
-{{ total_hours }}
+    <div class="table-scroll">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Datum
+                    </th>
+
+                    <th>
+                        Verkehr
+                    </th>
+
+                    <th>
+                        Zugnummer
+                    </th>
+
+                    <th>
+                        Von
+                    </th>
+
+                    <th>
+                        Nach
+                    </th>
+
+                    <th>
+                        Fahrzeug
+                    </th>
+
+                    <th>
+                        Stunden
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            {% for trip in trips %}
+
+                <tr>
+
+                    <td>
+                        {{ trip.date }}
+                    </td>
+
+                    <td>
+
+                        {% if trip.traffic_type == "zug" %}
+
+                            Zug
+
+                        {% elif trip.traffic_type == "rangieren" %}
+
+                            Rangierbewegung
+
+                        {% else %}
+
+                            {{ trip.traffic_type }}
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {% if trip.train_number %}
+
+                            {{ trip.train_number }}
+
+                        {% else %}
+
+                            -
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+                        {{ trip.from_station }}
+                    </td>
+
+                    <td>
+                        {{ trip.to_station|default:"-" }}
+                    </td>
+
+                    <td>
+                        {{ trip.vehicle|default:"-" }}
+                    </td>
+
+                    <td>
+                        {{ trip.hours }}
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                <tr>
+
+                    <td colspan="7">
+
+                        Keine Fahrten im Jahr
+                        {{ current_year }}
+                        vorhanden.
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
 </div>
 
-</div>
+
+<!-- =====================================================
+     ZURÜCK
+     ===================================================== -->
 
 <div class="card">
 
-<h3>Sollstunden</h3>
-
-<div class="stat-value">
-{{ target_hours }}
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>Fahrpraxis-Fortschritt</h2>
-
-<div class="progress">
-
-<div
-class="progress-bar"
-style="width:{{ percent }}%;"
->
-{{ percent }} %
-</div>
+    <a
+        href="/mitarbeiter/"
+        class="button secondary"
+    >
+        Zurück zur Mitarbeiterliste
+    </a>
 
 </div>
 
-</div>
-
-<div class="card">
-
-<h2>Fahrten {{ current_year }}</h2>
-
-<table>
-
-<tr>
-    <th>Datum</th>
-    <th>Zug</th>
-    <th>Leistung</th>
-    <th>Fahrzeug</th>
-    <th>Stunden</th>
-</tr>
-
-{% for trip in trips %}
-
-<tr>
-    <td>{{ trip.date }}</td>
-    <td>{{ trip.train_number }}</td>
-    <td>{{ trip.service_type }}</td>
-    <td>{{ trip.vehicle }}</td>
-    <td>{{ trip.hours }}</td>
-</tr>
-
-{% empty %}
-
-<tr>
-    <td colspan="5">
-        Keine Fahrten vorhanden
-    </td>
-</tr>
-
-{% endfor %}
-
-</table>
-
-</div>
 
 {% endblock %}

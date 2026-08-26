@@ -1,26 +1,82 @@
-from dal import autocomplete
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.decorators.http import require_POST
 
-from .models import Station
+import json
+
+from stations.models import Station
 
 
-class StationAutocomplete(
-    autocomplete.Select2QuerySetView
-):
+@login_required
+def map_view(request):
 
-    def get_queryset(self):
+    return render(
+        request,
+        "kundigkeit/map.html",
+        {
+            "page_title": "Kundigkeit",
+        },
+    )
 
-        if not self.request.user.is_authenticated:
 
-            return Station.objects.none()
+@login_required
+def editor_view(request):
 
-        qs = Station.objects.all()
+    stations = Station.objects.order_by(
+        "name"
+    )
 
-        if self.q:
+    return render(
+        request,
+        "kundigkeit/editor.html",
+        {
+            "stations": stations,
+        },
+    )
 
-            qs = qs.filter(
-                name__icontains=self.q
-            )
 
-        return qs.order_by(
-            "name"
-        )
+@login_required
+def stations_json(request):
+
+    data = []
+
+    for station in Station.objects.order_by("name"):
+
+        data.append({
+
+            "id": station.id,
+            "name": station.name,
+            "x": station.x,
+            "y": station.y,
+
+        })
+
+    return JsonResponse(
+        data,
+        safe=False
+    )
+
+
+@login_required
+@require_POST
+def save_position(request):
+
+    data = json.loads(
+        request.body
+    )
+
+    station = Station.objects.get(
+        pk=data["id"]
+    )
+
+    station.x = data["x"]
+    station.y = data["y"]
+
+    station.save()
+
+    return JsonResponse({
+
+        "success": True
+
+    })

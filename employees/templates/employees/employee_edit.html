@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+.page-title{
+    color:#244C82;
+    margin-top:0;
+}
+
+.form-card{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px;
+    border:1px solid #ccc;
+    border-radius:7px;
+    font-size:16px;
+}
+
+.checkbox-group{
+    margin-bottom:18px;
+}
+
+.checkbox-group input{
+    width:auto;
+    margin-right:8px;
+}
+
+.checkbox-group label{
+    display:inline;
+    font-weight:normal;
+}
+
+.radio-group{
+    margin-bottom:18px;
+}
+
+.radio-group div{
+    margin-bottom:8px;
+}
+
+.radio-group input{
+    width:auto;
+    margin-right:8px;
+}
+
+.radio-group label{
+    font-weight:normal;
+}
+
+.helptext{
+    display:block;
+    color:#777;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.errorlist{
+    color:#b00020;
+    margin:5px 0;
+    padding-left:20px;
+}
+
+.button{
+    display:inline-block;
+    background:#244C82;
+    color:white;
+    padding:12px 20px;
+    border:0;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.cancel-button{
+    background:#777;
+    margin-left:10px;
+}
+
+.section-title{
+    color:#244C82;
+    border-bottom:1px solid #ddd;
+    padding-bottom:8px;
+    margin-top:30px;
+}
+
+</style>
+
+
+<div class="card form-card">
+
+<h1 class="page-title">
+    Benutzer bearbeiten
+</h1>
+
+<p>
+    <strong>{{ employee.user.email }}</strong>
+</p>
+
+
+<form method="post">
+
+{% csrf_token %}
+
+{{ form.non_field_errors }}
+
+
+<h2 class="section-title">
+    Persönliche Daten
+</h2>
+
+
+{% for field in form %}
+
+{% if field.name != "etcs_level1" and field.name != "etcs_level2" and field.name != "role" and field.name != "active" and field.name != "password" and field.name != "password_confirm" %}
+
+<div class="form-group">
+
+    {{ field.label_tag }}
+
+    {{ field }}
+
+    {{ field.errors }}
+
+    {% if field.help_text %}
+
+    <span class="helptext">
+        {{ field.help_text }}
+    </span>
+
+    {% endif %}
+
+</div>
+
+{% endif %}
+
+{% endfor %}
+
+
+<h2 class="section-title">
+    ETCS-Berechtigungen
+</h2>
+
+
+<div class="checkbox-group">
+
+    {{ form.etcs_level1 }}
+
+    <label for="{{ form.etcs_level1.id_for_label }}">
+        ETCS Level 1
+    </label>
+
+    {{ form.etcs_level1.errors }}
+
+</div>
+
+
+<div class="checkbox-group">
+
+    {{ form.etcs_level2 }}
+
+    <label for="{{ form.etcs_level2.id_for_label }}">
+        ETCS Level 2
+    </label>
+
+    {{ form.etcs_level2.errors }}
+
+</div>
+
+
+<h2 class="section-title">
+    Rolle
+</h2>
+
+
+<div class="radio-group">
+
+    {{ form.role.errors }}
+
+    {% for radio in form.role %}
+
+    <div>
+
+        {{ radio.tag }}
+
+        <label for="{{ radio.id_for_label }}">
+            {{ radio.choice_label }}
+        </label>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+<h2 class="section-title">
+    Status
+</h2>
+
+
+<div class="checkbox-group">
+
+    {{ form.active }}
+
+    <label for="{{ form.active.id_for_label }}">
+        Benutzer ist aktiv
+    </label>
+
+    {{ form.active.errors }}
+
+</div>
+
+
+<h2 class="section-title">
+    Passwort
+</h2>
+
+<p>
+    Nur ausfüllen, wenn das Passwort geändert werden soll.
+</p>
+
+
+<div class="form-group">
+
+    {{ form.password.label_tag }}
+
+    <input
+        type="password"
+        name="password"
+        id="{{ form.password.id_for_label }}"
+        autocomplete="new-password"
+    >
+
+    {{ form.password.errors }}
+
+    {% if form.password.help_text %}
+
+    <span class="helptext">
+        {{ form.password.help_text }}
+    </span>
+
+    {% endif %}
+
+</div>
+
+
+<div class="form-group">
+
+    {{ form.password_confirm.label_tag }}
+
+    <input
+        type="password"
+        name="password_confirm"
+        id="{{ form.password_confirm.id_for_label }}"
+        autocomplete="new-password"
+    >
+
+    {{ form.password_confirm.errors }}
+
+</div>
+
+
+<div>
+
+    <button
+        type="submit"
+        class="button"
+    >
+        Speichern
+    </button>
+
+    <a
+        href="/mitarbeiter/{{ employee.id }}/"
+        class="button cancel-button"
+    >
+        Abbrechen
+    </a>
+
+</div>
+
+
+</form>
+
+</div>
+
+{% endblock %}

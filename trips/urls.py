@@ -1,11 +1,11 @@
 from django.urls import path
 
-from .views import (
-    create_trip,
-    trip_list,
-    edit_trip,
-    delete_trip,
-)
+from .views import create_trip
+from .views import delete_trip
+from .views import edit_trip
+from .views import trip_list
+from .views import trip_pdf
+
 
 urlpatterns = [
 
@@ -19,6 +19,12 @@ urlpatterns = [
         "neu/",
         create_trip,
         name="create_trip"
+    ),
+
+    path(
+        "pdf/",
+        trip_pdf,
+        name="trip_pdf"
     ),
 
     path(
