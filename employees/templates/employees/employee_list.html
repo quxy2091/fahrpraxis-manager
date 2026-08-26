@@ -9,6 +9,20 @@
     margin-top:0;
 }
 
+.top-actions{
+    margin-bottom:20px;
+}
+
+.button{
+    display:inline-block;
+    background:#244C82;
+    color:white;
+    padding:12px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
 .employee-link{
     color:#244C82;
     text-decoration:none;
@@ -23,10 +37,23 @@
     display:inline-block;
     padding:6px 10px;
     border-radius:20px;
-    background:#e8eef8;
-    color:#244C82;
     font-size:14px;
     font-weight:bold;
+}
+
+.badge-category{
+    background:#e8eef8;
+    color:#244C82;
+}
+
+.badge-active{
+    background:#e8f5e9;
+    color:#2e7d32;
+}
+
+.badge-inactive{
+    background:#eeeeee;
+    color:#666;
 }
 
 table{
@@ -45,9 +72,23 @@ td{
     text-align:left;
 }
 
-@media(max-width:768px){
+.inactive-row{
+    opacity:0.65;
+}
+
+.login-never{
+    color:#888;
+    font-style:italic;
+}
+
+@media(max-width:900px){
+
+    .table-container{
+        overflow-x:auto;
+    }
 
     table{
+        min-width:850px;
         font-size:14px;
     }
 
@@ -55,42 +96,138 @@ td{
 
 </style>
 
+
 <div class="card">
 
 <h1 class="page-title">
-👥 Mitarbeiter
+    Mitarbeiter
 </h1>
+
+
+<div class="top-actions">
+
+<a
+    href="/mitarbeiter/neu/"
+    class="button"
+>
+    + Neuer Benutzer
+</a>
+
+</div>
+
+
+<div class="table-container">
 
 <table>
 
+<thead>
+
 <tr>
+
     <th>Name</th>
+
+    <th>E-Mail</th>
+
     <th>Kategorie</th>
+
     <th>Rolle</th>
+
+    <th>Status</th>
+
+    <th>Letztes Login</th>
+
 </tr>
+
+</thead>
+
+
+<tbody>
 
 {% for employee in employees %}
 
-<tr>
+<tr class="{% if not employee.active %}inactive-row{% endif %}">
 
     <td>
+
         <a
             href="/mitarbeiter/{{ employee.id }}/"
             class="employee-link"
         >
-            {{ employee.first_name }}
-            {{ employee.last_name }}
+
+            {{ employee.user.first_name }}
+            {{ employee.user.last_name }}
+
         </a>
+
     </td>
 
+
     <td>
-        <span class="badge">
+
+        {{ employee.user.email }}
+
+    </td>
+
+
+    <td>
+
+        {% if employee.category %}
+
+        <span class="badge badge-category">
             {{ employee.category }}
         </span>
+
+        {% else %}
+
+        <span class="badge badge-category">
+            Keine Kategorie
+        </span>
+
+        {% endif %}
+
     </td>
 
+
     <td>
-        {{ employee.role }}
+
+        {{ employee.get_role_display }}
+
+    </td>
+
+
+    <td>
+
+        {% if employee.active %}
+
+        <span class="badge badge-active">
+            Aktiv
+        </span>
+
+        {% else %}
+
+        <span class="badge badge-inactive">
+            Inaktiv
+        </span>
+
+        {% endif %}
+
+    </td>
+
+
+    <td>
+
+        {% if employee.user.last_login %}
+
+            {{ employee.user.last_login|date:"d.m.Y H:i" }}
+
+        {% else %}
+
+            <span class="login-never">
+                Noch nie
+            </span>
+
+        {% endif %}
+
     </td>
 
 </tr>
@@ -98,14 +235,20 @@ td{
 {% empty %}
 
 <tr>
-    <td colspan="3">
-        Keine Mitarbeiter vorhanden
+
+    <td colspan="6">
+        Keine Benutzer vorhanden
     </td>
+
 </tr>
 
 {% endfor %}
 
+</tbody>
+
 </table>
+
+</div>
 
 </div>
 

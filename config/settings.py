@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'docs',
     'stations',
     'kundigkeit',
+    'strecken',
 ]
 
 MIDDLEWARE = [

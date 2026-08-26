@@ -1,27 +1,134 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block content %}
 
-<div class="card">
+<style>
 
-    <h1>🗺 Strecken- und Bahnhofkundigkeit</h1>
+h1{
+    color:#244C82;
+}
 
-    <p>
-        Willkommen im neuen Modul des Semita Fahrpraxis Managers.
-    </p>
+#map{
 
-    <hr>
+    position:relative;
 
-    <h2>Status</h2>
+    width:100%;
 
-    <p>✅ Kundigkeit-Modul erfolgreich geladen.</p>
+    height:90vh;
 
-    <p>
-        Im nächsten Sprint entsteht hier die interaktive Schweizkarte.
-    </p>
+    overflow:hidden;
+
+    background:#ececec;
+
+    border-radius:12px;
+
+}
+
+#pdf{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    border:none;
+
+}
+
+#overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:20;
+
+}
+
+.station{
+
+    position:absolute;
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#1565c0;
+
+    border:2px solid white;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.station:hover{
+
+    transform:scale(1.6);
+
+    background:#d32f2f;
+
+}
+
+#popup{
+
+    position:absolute;
+
+    right:20px;
+
+    top:20px;
+
+    width:260px;
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    display:none;
+
+    box-shadow:0 0 15px rgba(0,0,0,.25);
+
+    z-index:100;
+
+}
+
+</style>
+
+<h1>Strecken- und Bahnhofkenntnisse</h1>
+
+<div id="map">
+
+<object
+
+id="pdf"
+
+data="{% static 'maps/streckenkarte.pdf' %}"
+
+type="application/pdf">
+
+</object>
+
+<div id="overlay"></div>
+
+<div id="popup">
+
+<h2 id="popup-title"></h2>
+
+<div id="popup-body"></div>
 
 </div>
+
+</div>
+
+<script src="{% static 'js/kundigkeit.js' %}"></script>
 
 {% endblock %}

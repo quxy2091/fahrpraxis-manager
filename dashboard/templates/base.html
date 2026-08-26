@@ -6,9 +6,13 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Semita Mindestfahrpraxis</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Semita Fahrpraxis Manager</title>
 
 <style>
 
@@ -42,8 +46,37 @@ body{
     color:#d9e7ff;
 }
 
+.logged-in-user{
+    margin-left:auto;
+    color:white;
+    font-size:14px;
+}
+
+.logged-in-user strong{
+    color:#d9e7ff;
+}
+
+.logout-form{
+    margin-left:0;
+}
+
+.logout-button{
+    background:none;
+    border:none;
+    color:white;
+    font-family:Arial,sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    padding:0;
+}
+
+.logout-button:hover{
+    color:#d9e7ff;
+}
+
 .container{
-    max-width:1200px;
+    max-width:1300px;
     margin:auto;
     padding:20px;
 }
@@ -64,10 +97,11 @@ body{
     border-radius:10px;
     text-decoration:none;
     font-weight:bold;
+    transition:.2s;
 }
 
 .button:hover{
-    background:#1b3b67;
+    background:#19385f;
 }
 
 table{
@@ -92,8 +126,8 @@ td{
 
 .message{
     padding:14px 18px;
-    margin-bottom:12px;
     border-radius:10px;
+    margin-bottom:12px;
     font-weight:bold;
 }
 
@@ -128,6 +162,14 @@ td{
         align-items:flex-start;
     }
 
+    .logged-in-user{
+        margin-left:0;
+    }
+
+    .logout-form{
+        margin-left:0;
+    }
+
     .logo{
         height:40px;
     }
@@ -143,24 +185,68 @@ td{
 <div class="navbar">
 
 <img
-src="{% static 'images/semita.png' %}"
-class="logo"
-alt="Semita"
+    src="{% static 'images/semita.png' %}"
+    class="logo"
+    alt="Semita"
 >
 
-<a href="/">Startseite</a>
 
-<a href="/mein-cockpit/">Mindestfahrpraxis</a>
+<a href="/">
+    Startseite
+</a>
 
-<a href="/mitarbeiter/">Mitarbeiter</a>
 
-<a href="/fahrzeuge/">Fahrzeuge</a>
+<a href="/mein-cockpit/">
+    Mindestfahrpraxis
+</a>
 
-<a href="/kundigkeit/">Kundigkeit</a>
 
-<a href="/admin/">Admin</a>
+{% if request.user.is_authenticated and request.user.profile.role == "admin" %}
+
+<a href="/mitarbeiter/">
+    Mitarbeiter
+</a>
+
+<a href="/admin/">
+    Admin
+</a>
+
+{% endif %}
+
+
+{% if request.user.is_authenticated %}
+
+<div class="logged-in-user">
+
+    Angemeldet als:
+    <strong>
+        {{ request.user.get_full_name|default:request.user.username }}
+    </strong>
 
 </div>
+
+
+<form
+    method="post"
+    action="/logout/"
+    class="logout-form"
+>
+
+{% csrf_token %}
+
+<button
+    type="submit"
+    class="logout-button"
+>
+    Logout
+</button>
+
+</form>
+
+{% endif %}
+
+</div>
+
 
 <div class="container">
 
@@ -172,7 +258,7 @@ alt="Semita"
 
 <div class="message {{ message.tags }}">
 
-{{ message }}
+    {{ message }}
 
 </div>
 
@@ -181,6 +267,7 @@ alt="Semita"
 </div>
 
 {% endif %}
+
 
 {% block content %}
 {% endblock %}

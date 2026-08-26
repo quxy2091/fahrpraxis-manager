@@ -1,6 +1,6 @@
 from django.db import models
 
-from employees.models import Employee
+from accounts.models import UserProfile
 from vehicles.models import Vehicle
 from stations.models import Station
 
@@ -17,9 +17,10 @@ class Trip(models.Model):
         ("indirekt", "Indirekt"),
     ]
 
-    employee = models.ForeignKey(
-        Employee,
-        on_delete=models.CASCADE
+    user_profile = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE,
+        related_name="trips"
     )
 
     date = models.DateField()

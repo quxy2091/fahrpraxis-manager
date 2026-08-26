@@ -4,75 +4,66 @@
 
 <div class="card">
 
-<h1>Semita Fahrpraxis Manager</h1>
+    <h1>Semita Fahrpraxis Manager</h1>
 
-<p>
-Willkommen im Mitarbeiterportal.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>Aktuelle Planungen</h2>
-
-{% if planungen %}
-
-<ul>
-
-{% for planung in planungen %}
-
-<li>
-
-<a
-href="{{ planung.file.url }}"
-target="_blank"
->
-📄 {{ planung.title }}
-</a>
-
-</li>
-
-{% endfor %}
-
-</ul>
-
-{% else %}
-
-<p>
-Keine Planungen vorhanden.
-</p>
-
-{% endif %}
+    <p>
+        Willkommen im Mitarbeiterportal.
+    </p>
 
 </div>
 
+
 <div class="card">
 
-<h2>Schnellzugriffe</h2>
+    <h2>Aktuelle Planungen</h2>
 
-<p>
+    {% if planungen %}
 
-<a
-href="/Mindestfahrpraxis/"
-class="button"
->
-Mindestfahrpraxis
-</a>
+        <ul>
 
-</p>
+            {% for planung in planungen %}
 
-<p>
+                <li>
 
-<a
-href="https://vorgaben.sbb.ch/"
-target="_blank"
-class="button"
->
-SBB Vorgaben
-</a>
+                    <a
+                        href="{{ planung.file.url }}"
+                        target="_blank"
+                    >
+                        📄 {{ planung.title }}
+                    </a>
 
-</p>
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>
+            Keine Planungen vorhanden.
+        </p>
+
+    {% endif %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Schnellzugriffe</h2>
+
+    <p>
+
+        <a
+            href="https://vorgaben.sbb.ch/"
+            target="_blank"
+            class="button"
+        >
+            SBB Vorgaben
+        </a>
+
+    </p>
 
 </div>
 

@@ -3,7 +3,10 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=20)
+
+    name = models.CharField(
+        max_length=20
+    )
 
     yearly_target_hours = models.DecimalField(
         max_digits=5,
@@ -11,15 +14,15 @@ class Category(models.Model):
     )
 
     def __str__(self):
+
         return self.name
 
 
 class Employee(models.Model):
 
     ROLE_CHOICES = [
-        ('employee', 'Mitarbeiter'),
-        ('admin', 'Admin'),
-        ('superuser', 'Superuser'),
+        ("employee", "Mitarbeiter"),
+        ("admin", "Admin"),
     ]
 
     user = models.OneToOneField(
@@ -29,9 +32,13 @@ class Employee(models.Model):
         blank=True
     )
 
-    first_name = models.CharField(max_length=100)
+    first_name = models.CharField(
+        max_length=100
+    )
 
-    last_name = models.CharField(max_length=100)
+    last_name = models.CharField(
+        max_length=100
+    )
 
     email = models.EmailField(
         blank=True
@@ -55,7 +62,7 @@ class Employee(models.Model):
     role = models.CharField(
         max_length=20,
         choices=ROLE_CHOICES,
-        default='employee'
+        default="employee"
     )
 
     active = models.BooleanField(
@@ -63,4 +70,5 @@ class Employee(models.Model):
     )
 
     def __str__(self):
+
         return f"{self.first_name} {self.last_name}"

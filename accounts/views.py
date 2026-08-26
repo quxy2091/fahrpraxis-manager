@@ -15,9 +15,13 @@ class SemitaLoginView(LoginView):
 
 def logout_view(request):
 
-    logout(request)
+    if request.method == "POST":
 
-    return redirect("/login/")
+        logout(request)
+
+        return redirect("/login/")
+
+    return redirect("/")
 
 
 def setup_admin(request):
